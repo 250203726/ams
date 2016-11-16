@@ -1,0 +1,126 @@
+package com.ams.assetmanage.maintenanceRecord.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
+
+
+import com.ams.assetmanage.maintenanceRecord.dao.MaintenanceRecordDao;
+import com.ams.assetmanage.maintenanceRecord.entity.MaintenanceRecord;
+import com.ams.assetmanage.maintenanceRecord.model.MaintenanceRecordModel;
+import com.ams.assetmanage.maintenanceRecord.service.MaintenanceRecordService;
+import com.util.generator.IdGenerator;
+import com.util.page.Pager;
+
+/**
+ * 资产维护记录service层实现
+ * @author JackH
+ *
+ */
+@Service
+public class MaintenanceRecordServiceImpl implements MaintenanceRecordService {
+
+	@Resource
+	private MaintenanceRecordDao maintenanceRecordDao;
+	
+	/**
+	 * 保存
+	 */
+	@Override
+	public MaintenanceRecord save(MaintenanceRecord model) {
+		if(null!=model){
+			model.setMaintenancerecordId(IdGenerator.getInstance().getId());
+			maintenanceRecordDao.save(model);
+			return model;
+		}
+		return null;
+	}
+
+	/**
+	 * 更新
+	 */
+	@Override
+	public MaintenanceRecord update(MaintenanceRecord model) {
+		if(null!=model && StringUtils.isNotEmpty(model.getMaintenancerecordId())){
+			MaintenanceRecord maintenanceRecord=maintenanceRecordDao.get(model.getMaintenancerecordId());
+			if(null!=maintenanceRecord){
+				maintenanceRecord.setAssetId(model.getAssetId());
+				maintenanceRecord.setRecordPeople(model.getRecordPeople());
+				maintenanceRecord.setRecordInfo(model.getRecordInfo());
+				maintenanceRecord.setRepairTime(model.getRepairTime());
+				maintenanceRecord.setRepairExstatus(model.getRepairExstatus());
+				maintenanceRecord.setRepairContent(model.getRepairContent());
+				maintenanceRecord.setRepairAftstatus(model.getRepairAftstatus());
+				maintenanceRecord.setAcceptancePerson(model.getAcceptancePerson());
+				maintenanceRecord.setRecordTime(model.getRecordTime());
+				maintenanceRecord.setAcceptanceEvaluation(model.getAcceptanceEvaluation());
+				maintenanceRecordDao.update(maintenanceRecord);
+				return maintenanceRecord;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 删除
+	 */
+	@Override
+	public void delete(String id) {
+		if(StringUtils.isNotEmpty(id)){
+			MaintenanceRecord maintenanceRecord=maintenanceRecordDao.get(id);
+			maintenanceRecordDao.delete(maintenanceRecord);
+		}
+		
+	}
+
+	/**
+	 * 通过ID找实体
+	 */
+	@Override
+	public MaintenanceRecord getById(String id) {
+		if(StringUtils.isNotEmpty(id)){
+			MaintenanceRecord maintenanceRecord=maintenanceRecordDao.get(id);
+			return maintenanceRecord;
+		}
+		return null;
+	}
+
+	/**
+	 * 条件查询
+	 */
+	@Override
+	public List<MaintenanceRecordModel> findByCondition(
+			MaintenanceRecordModel model, Pager page) {
+		return maintenanceRecordDao.findByCondition(model, page);
+	}
+
+	/**
+	 * 通过id找model
+	 */
+	@Override
+	public MaintenanceRecordModel getModelById(String id) {
+		if(StringUtils.isNotEmpty(id)){
+			MaintenanceRecordModel maintenanceRecordModel=maintenanceRecordDao.getModel(id);
+			return maintenanceRecordModel;
+		}
+		return null;
+	}
+
+	/**
+	 * 检查当前资产维护记录是否存在
+	 */
+	@Override
+	public boolean checkMaintenanceRecord(String name, String id) {
+		List<MaintenanceRecord> list = maintenanceRecordDao.checkMaintenanceRecord(name, id);
+		if (!list.isEmpty() && list.size() > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	
+
+}

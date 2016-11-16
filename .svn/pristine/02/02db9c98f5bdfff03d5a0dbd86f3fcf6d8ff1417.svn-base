@@ -1,0 +1,187 @@
+package com.ams.assetmanage.assetpurchaseapplication.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ams.company.entity.Company;
+import com.ams.company.model.CompanyModel;
+import com.ams.company.service.CompanyService;
+import com.ams.customer.service.CustomerService;
+import com.ams.assetmanage.assetpurchaseapplication.entity.Assetpurchaseapplication;
+import com.ams.assetmanage.assetpurchaseapplication.model.AssetpurchaseapplicationModel;
+import com.ams.assetmanage.assetpurchaseapplication.service.AssetpurchaseapplicationService;
+import com.core.action.BaseAction;
+import com.core.model.OutputMessage;
+import com.util.enums.PageSizeEnum;
+import com.util.json.JackJsonUtils;
+import com.util.page.Pager;
+import com.util.page.PagerHelper;
+
+/**
+ * 	资产购置申请Action
+ *	@author simon
+ */
+@Controller
+public class AssetpurchaseapplicationAction extends BaseAction{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9043863563506939011L;
+	@Resource
+	private AssetpurchaseapplicationService assetpurchaseapplicationService;
+	
+	/**
+	 * 跳转到新建页面
+	 * @return
+	 */
+	@RequestMapping(value="/assetmanage/assetpurchaseapplication/add")
+	public String add(){
+		return ASSETPURCHASEAPPLICATION+"edit";
+	}
+	
+	/**
+	 * 保存
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/assetmanage/assetpurchaseapplication/save",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String save(Assetpurchaseapplication model){
+		OutputMessage msg=new OutputMessage();
+		if(null!=model){
+			if(StringUtils.isNotEmpty(model.getPurchaseapplicationId ())){//修改
+				Assetpurchaseapplication assetpurchaseapplication=assetpurchaseapplicationService.getById(model.getPurchaseapplicationId ());
+				if(null!=assetpurchaseapplication){
+					assetpurchaseapplicationService.update(model);
+					msg=setOutputMessage(true, "修改成功！", model.getPurchaseapplicationId ());
+				}else{
+					msg=setOutputMessage(false, "该资产购置申请已经被删除！", model.getPurchaseapplicationId ());
+				}
+			}else{//保存
+				if(checkCompany(model.getPurchaseapplicationId (),null).equals("false")){//如果申请不存在
+					assetpurchaseapplicationService.save(model);
+					msg=setOutputMessage(true, "新建成功！", model.getPurchaseapplicationId ());
+				}else{
+					msg=setOutputMessage(false, "申请编号已存在！", model.getPurchaseapplicationId ());
+				}
+				
+			}
+		}else{
+			msg=setOutputMessage(false, "数据为空", null);
+		}
+		return JackJsonUtils.toJSon(msg);
+	}
+
+	/**
+	 * 跳转到编辑页面
+	 * @return
+	 */
+	@RequestMapping(value="/assetmanage/assetpurchaseapplication/edit")
+	public String edit(String id,ModelMap map){
+		if(StringUtils.isNotEmpty(id)){
+			Assetpurchaseapplication model=assetpurchaseapplicationService.getById(id);
+			map.addAttribute("model", model);
+			return ASSETPURCHASEAPPLICATION+"edit";
+		}else{
+			this.returnException("资产购置申请编号不存在，不能编辑！");
+		}
+		return ERROR;
+		
+	}
+	
+	/**
+	 * 跳转到详细页面
+	 * @return
+	 */
+	@RequestMapping(value="/assetmanage/assetpurchaseapplication/detail")
+	public String detail(String id,ModelMap map){
+		if(StringUtils.isNotEmpty(id)){
+			Assetpurchaseapplication model=assetpurchaseapplicationService.getById(id);
+			map.addAttribute("model", model);
+			return ASSETPURCHASEAPPLICATION+"detail";
+		}else{
+			this.returnException("资产购置申请编号不存在，查看不了详细！");
+		}
+		return ERROR;
+	}
+	
+	/**
+	 * 物理删除申请信息
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/assetmanage/assetpurchaseapplication/delete",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String delete(String id){
+		OutputMessage msg=new OutputMessage();
+		if(StringUtils.isNotEmpty(id)){
+			assetpurchaseapplicationService.delete(id);
+			msg=setOutputMessage(true, "操作成功！", id);
+		}else{
+			msg=setOutputMessage(false, "操作失败，申请编号为空！", id);
+		}
+		return JackJsonUtils.toJSon(msg);
+	}
+	
+	/**
+	 * 跳转到列表页面
+	 * @return
+	 */
+	@RequestMapping(value="/assetmanage/assetpurchaseapplication/toList")
+	public String toList(){
+		return ASSETPURCHASEAPPLICATION+"list";
+	}
+	
+	/**
+	 * 局部刷新翻页
+	 * @return
+	 */
+	@RequestMapping(value="/assetmanage/assetpurchaseapplication/list",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String list(Assetpurchaseapplication model){
+		Pager page=PagerHelper.getInstance(this.getRequest(), PageSizeEnum.MIDDLE);
+		List<Assetpurchaseapplication> list=assetpurchaseapplicationService.findByCondition(model,page);
+		page.setRows(list);
+		return JackJsonUtils.toJSon(page);
+	}
+	
+	/**
+	 * 打开弹出框内容
+	 * @return
+	 */
+	@RequestMapping(value="/assetmanage/assetpurchaseapplication/toPopList")
+	public String toPopList(AssetpurchaseapplicationModel model,ModelMap map){
+		map.addAttribute("model", model);
+		return ASSETPURCHASEAPPLICATION+"assetpurchaseapplicationPop";
+	}
+	
+	/**
+	 * 弹出框局部刷新
+	 */
+	@RequestMapping(value="/assetmanage/assetpurchaseapplication/popList",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String popList(Assetpurchaseapplication model){
+		Pager page=PagerHelper.getInstance(this.getRequest(), PageSizeEnum.MIDDLE);
+		List<Assetpurchaseapplication> list=assetpurchaseapplicationService.findByCondition(model,page);
+		page.setRows(list);
+		return JackJsonUtils.toJSon(page);
+	}
+	
+	/**
+	 * 检查申请编号是否存在
+	 * @param name
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/assetmanage/assetpurchaseapplication/checkAssetpurchaseapplication",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String checkCompany(String name, String id) {
+		boolean flag=false;
+		flag=assetpurchaseapplicationService.checkAssetpurchaseapplication(name, id);
+		return String.valueOf(flag);
+	}
+	
+}

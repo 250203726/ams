@@ -1,0 +1,68 @@
+package com.ams.assetmanage.assetdamage.model;
+
+/**
+ * 查询实体
+ * 
+ * @author 
+ * @Data 
+ * 
+ */
+public class AssetdamageModel {
+	private String assetDamageID;      // 主键
+	private String assetId;            // 资产Id号
+	private String assetDamageRemark;  // 资产报损备注
+	private String assetDamageReason;  //资产报损原因
+	private String assetDamageOpinion; //资产报损选择
+	private String userId;             //用户Id
+	private String appData;            //app数据
+	private String lastOpinion;        //最终选择
+	
+	public String getAssetDamageID() {
+		return assetDamageID;
+	}
+	public void setAssetDamageID(String assetDamageID) {
+		this.assetDamageID = assetDamageID;
+	}
+	public String getAssetId() {
+		return assetId;
+	}
+	public void setAssetId(String assetId) {
+		this.assetId = assetId;
+	}
+	public String getAssetDamageRemark() {
+		return assetDamageRemark;
+	}
+	public void setAssetDamageRemark(String assetDamageRemark) {
+		this.assetDamageRemark = assetDamageRemark;
+	}
+	public String getAssetDamageReason() {
+		return assetDamageReason;
+	}
+	public void setAssetDamageReason(String assetDamageReason) {
+		this.assetDamageReason = assetDamageReason;
+	}
+	public String getAssetDamageOpinion() {
+		return assetDamageOpinion;
+	}
+	public void setAssetDamageOpinion(String assetDamageOpinion) {
+		this.assetDamageOpinion = assetDamageOpinion;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getAppData() {
+		return appData;
+	}
+	public void setAppData(String appData) {
+		this.appData = appData;
+	}
+	public String getLastOpinion() {
+		return lastOpinion;
+	}
+	public void setLastOpinion(String lastOpinion) {
+		this.lastOpinion = lastOpinion;
+	}
+}

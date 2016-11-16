@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-12 18:02:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+ <class name="com.ams.assetmanage.assetcla.entity.Assetdamage" table="t_assetdamageinfo">
+  <id name="assetdamageId" type="string">
+   <column length="32" name="assetDamageID"/>
+   <generator class="assigned"/>
+  </id>
+  
+  <property name="assetId" type="string">
+	   <column name="assetId" length="100" not-null="true">
+	    <comment>资产ID号</comment>
+	   </column>
+  </property>
+  
+  <property name="assetDamageRemark" type="string">
+	   <column name="assetDamageRemark" length="100" not-null="true">
+	    <comment>资产报损标识</comment>
+	   </column>
+  </property>
+  
+  <property name="assetDamageReason" type="string">
+	   <column name="assetDamageReason" length="100" not-null="true">
+	    <comment>资产报损原因</comment>
+	   </column>
+  </property>
+  
+  <property name="assetDamageOpinion" type="string">
+	   <column name="assetDamageOpinion" length="100" not-null="true">
+	    <comment>资产报损选择</comment>
+	   </column>
+  </property>
+  
+  <property name="userId" type="string">
+	   <column name="userId" length="100" not-null="true">
+	    <comment>用户ID</comment>
+	   </column>
+  </property>
+  
+  <property name="appData" type="string">
+	   <column name="appData" length="100" not-null="true">
+	    <comment>app数据</comment>
+	   </column>
+  </property>
+  
+  <property name="lastOpinion" type="string">
+	   <column name="lastOpinion" length="100" not-null="true">
+	    <comment>最终选择</comment>
+	   </column>
+  </property>
+  
+ </class>
+</hibernate-mapping>

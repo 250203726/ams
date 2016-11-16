@@ -1,0 +1,97 @@
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd" >    
+        
+	<!--注解说明,自动向spring容器注册AutowiredAnnotationBeanPostProcessor、CommonAnnotationBeanPostProcessor、
+		PersistenceAnnotationBeanPostProcessor 以及 RequiredAnnotationBeanPostProcessor这4个BeanPostProcessor -->
+    <context:annotation-config />
+    
+    <!-- ①:开启controller注解支持,以完成Bean创建和自动依赖注入的功能,多个包用逗号隔开或从新定义一个 -->  
+    <!-- 扫描业务组件,让spring不扫描带有@Service注解的类(留在root-context.xml中扫描@Service注解的类),防止事务失效 -->
+	<context:component-scan base-package="com.core" >
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/> 
+	</context:component-scan>    
+	<context:component-scan base-package="com.ams" >
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/> 
+	</context:component-scan>
+
+    
+    <!-- ②：启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+    
+    <!-- ③：对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/" />
+        <property name="suffix" value=".jsp" />
+        <property name="contentType">
+			<value>text/html;charset=UTF-8</value>
+		</property>
+    </bean>
+    
+    <!-- 实现表单中的字符串自动转换为Date或者Timestamp 类型 -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+	    <property name="webBindingInitializer">
+	        <bean class="com.util.dataBind.MyDataBinding" />
+	    </property>
+	    <property name="messageConverters">
+	        <list>
+            	<bean
+	                class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
+	            <bean
+	                class="org.springframework.http.converter.StringHttpMessageConverter">
+	                <property name="writeAcceptCharset" value="false" />
+	                <property name="supportedMediaTypes">
+	                    <list>
+	                        <value>text/plain;charset=UTF-8</value>
+	                        <value>*/*;charset=UTF-8</value>
+	                    </list>
+	                </property>
+	            </bean>
+	            <bean class="org.springframework.http.converter.xml.SourceHttpMessageConverter" />
+	            <bean class="org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter" />
+	        </list>
+	    </property>
+	</bean>
+    
+    <!-- start 拦截器 -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+    	<property name="interceptors">
+    		<list>
+    			<!-- 拦截未登录用户 -->
+    			<bean class="com.util.handler.LoginAnnotationInterceptor" />
+    		</list>
+    	</property>
+    </bean>
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+	<!-- end 拦截器 -->
+	
+	<!-- start 页面异常捕获 -->	
+	<bean id="exceptionHandler" class="com.util.handler.MyExceptionHandler"/>
+	<!-- end 页面异常捕获 -->
+	
+	<!-- 文件上传 -->
+	<bean id="multipartResolver"  
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <!-- set the max upload size100MB -->  
+        <property name="maxUploadSize">  
+            <value>104857600</value>  
+        </property>  
+        <property name="maxInMemorySize">  
+            <value>4096</value>  
+        </property>  
+    </bean> 
+       
+</beans>

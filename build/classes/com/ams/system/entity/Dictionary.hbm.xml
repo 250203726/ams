@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-10-12 10:04:49 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.ams.system.entity.Dictionary" table="t_dictionary">
+        <id name="id" type="string">
+            <column name="id" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="groupname" type="string">
+            <column name="Groupname" length="32" not-null="true">
+                <comment>组名</comment>
+            </column>
+        </property>
+        <property name="groupTranslate" type="string">
+            <column name="GroupTranslate" length="32">
+                <comment>组名翻译</comment>
+            </column>
+        </property>        
+        <property name="code" type="string">
+            <column name="Code" length="128">
+                <comment>编码</comment>
+            </column>
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="128">
+                <comment>名称</comment>
+            </column>
+        </property>
+        <property name="value" type="string">
+            <column name="value">
+                <comment>值</comment>
+            </column>
+        </property>
+        <property name="sortCode" type="java.lang.Integer">
+            <column name="sortCode">
+                <comment>排序</comment>
+            </column>
+        </property>
+        <property name="filter" type="string">
+            <column name="filter" length="10">
+                <comment>值分组,大于，等于，小于某个值来分组</comment>
+            </column>
+        </property>
+        <property name="exesql" type="string">
+            <column name="exesql" length="1024">
+                <comment>执行的sql语句</comment>
+            </column>
+        </property>
+        <property name="remark" type="string">
+            <column name="remark" length="100">
+                <comment>备注</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

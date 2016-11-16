@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-5-10 21:21:33 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.ams.system.entity.LoginLog" table="t_login_log" >
+        <id name="loginLogId" type="string">
+            <column name="loginLog_Id" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="userName" type="string">
+            <column name="userName" length="100" not-null="true">
+                <comment>用户登录名</comment>
+            </column>
+        </property>
+        <property name="loginTime" type="timestamp">
+            <column name="loginTime" length="19" not-null="true">
+                <comment>登录时间</comment>
+            </column>
+        </property>
+        <property name="loginIp" type="string">
+            <column name="loginIp" length="20" not-null="true">
+                <comment>登录IP</comment>
+            </column>
+        </property>
+        <property name="loginMessage" type="string">
+            <column name="loginMessage" length="50">
+                <comment>登录反馈消息</comment>
+            </column>
+        </property>        
+    </class>
+</hibernate-mapping>

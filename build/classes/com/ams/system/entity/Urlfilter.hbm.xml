@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-1-5 11:34:50 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.ams.system.entity.Urlfilter" table="t_urlfilter" catalog="ams_db">
+        <id name="urlId" type="string">
+            <column name="urlId" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="vesion" type="java.lang.Long">
+            <column name="version">
+                <comment>版本号</comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="200">
+                <comment>描述</comment>
+            </column>
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="25" not-null="true">
+                <comment>名称</comment>
+            </column>
+        </property>
+        <property name="url" type="string">
+            <column name="url" length="200" not-null="true">
+                <comment>请求url</comment>
+            </column>
+        </property>
+        <property name="authoritys" type="string">
+            <column name="authoritys" >
+                <comment>权限值,多个用‘，’隔开</comment>
+            </column>
+        </property>
+        <property name="returnUrl" type="string">
+            <column name="returnUrl" length="200">
+                <comment>请求失败返回的url</comment>
+            </column>
+        </property>
+        <property name="rowFilter" type="string">
+            <column name="rowFilter" length="200">
+                <comment>是否过滤</comment>
+            </column>
+        </property>
+        <property name="params" type="string">
+            <column name="params" length="200">
+                <comment>请求参数</comment>
+            </column>
+        </property>
+        <property name="privilegess" type="string">
+            <column name="privilegess" length="1">
+                <comment>是否需要权限验证</comment>
+            </column>
+        </property>
+        <property name="formtoken" type="string">
+            <column name="formtoken" length="1">
+                <comment>是否表单验证重复提交</comment>
+            </column>
+        </property>
+        <property name="pvtype" type="string">
+            <column name="pvtype" length="1">
+                <comment>是否加入流量统计</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,217 @@
+/*-- Css Document of Basic or Default styles, by Jack --*/
+
+/*-- reset --*/
+
+body{color:#666; font-size: 14px; font-family: arial ,"songti", "宋体", Helvetica, sans-serif, cursive;}
+
+h1, h2, h3, h4, h5, h6 {
+	font-size: 24px;
+	color: #333;
+	text-transform: none;
+	font-weight: 700;
+    padding: 5px 0;
+}
+
+h2{font-size: 20px;}
+h3{font-size: 18px;}
+h4{font-size: 16px;}
+h5{font-size: 14px;}
+h6{font-size: 12px;}
+
+/*-- Hyper Link Styles --*/
+a,
+a:link, 
+a:active,
+a:visited{
+	color: #666;
+    font-size: 13px;
+	/*-webkit-transition: all .3s ease-out;
+	-moz-transition: all .3s ease-out;
+	-ms-transition: all .3s ease-out;
+	-o-transition: all .3s ease-out;
+	transition: all .3s ease-out;*/
+    text-decoration: none;
+    outline: none;
+}
+
+a:hover,
+a:active,
+a:visited{color: #333; }
+
+a.act,
+input[type=submit].act,
+input[type=submit].act:hover,
+input[type=button].act,
+input[type=button].act:hover {
+    display: inline-block;
+    background: none;
+    border: solid 1px #b7b7b7;
+    font-family: "songti","宋体";
+    font-weight: normal;
+    text-shadow: 0 1px 1px #999;
+    height: 24px;
+    line-height: 24px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    padding: 0 10px;
+    color: #666666;
+    cursor: pointer;
+    }
+
+a.act:HOVER {text-decoration: none;}
+    
+/*-- Hyper Link Styles end --*/
+
+/*--  input[type='radio'], input[type='checkbox'] 垂直对齐 --*/
+input[type='radio'], input[type='checkbox']{vertical-align: -3px; *vertical-align:middle; _vertical-align:3px; margin-right: 4px;}
+
+/*-- table --*/
+table{border-collapse: collapse; border-spacing: 0;}
+    
+table th, table td{padding: 5px;}
+  
+em{font-style: normal; display: inline;}
+
+ol,ul,dl{list-style: none; display: block;}
+
+img{border: 0;}
+    
+.hide{display: none;}     
+.show{display: block;} 
+
+tr.show{display: table-row;} 
+td.show{display: table-cell;} 
+  
+/*-- 自定义高度、浮动与文本对齐 --*/
+.ht_5{display: block; height: 5px;}
+.ht_10{display: block;height: 10px;}     
+.ht_20{display: block; height: 20px;}
+       
+.lineht_20 {line-height: 20px;}
+.lineht_24 {line-height: 24px;}
+  
+.clear{clear: both;}  
+.clearfix{clear: both; display: block;}
+.floatnone{float: none;}
+.floatleft{float: left;}
+.floatright{float: right;}
+
+.textleft{text-align: left;}
+.textright{text-align: right;}
+.textcenter{text-align: center;}
+
+/*--设置文字两端对齐--*/
+.textjustify {
+      text-align:justify;
+      text-justify:distribute-all-lines;/*ie6-8*/
+      text-align-last:justify;/* ie9*/
+      -moz-text-align-last:justify;/*ff*/
+      -webkit-text-align-last:justify;/*chrome 20+*/
+  }
+  @media screen and (-webkit-min-device-pixel-ratio:0){/* chrome*/
+      .textjustify:after{
+          content:".";
+          display: inline-block;
+          width:100%;
+          overflow:hidden;
+          height:0;
+      }
+  }
+  
+/*-- 同时应用 {text-overflow:ellipsis; white-space:nowrap; overflow:hidden;} 实现溢出文本显示省略号效果 --*/
+/*-- IE6+ 及 Firefox，Chrome，Safari，Opera等浏览器较新版本均支持了{text-overflow:ellipsis;} --*/
+.text-overflow {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+  
+/*-- 自定义高度、浮动与文本对齐 end --*/
+
+/*-- some fixed styles should be put at end --*/
+.bgfff {background: #fff;}
+.bgf0f0f0 {background: #f0f0f0;}
+.bgddd {background: #ddd;}
+.bge0e0e0 {background: #e0e0e0;}
+
+.highlight {color: #069; background: yellow;}
+.redstar {color: #e40; vertical-align: middle;}
+
+.color_000{color: #000;}
+.color_fff{color: #FFF;}    
+.color_f3f3f3{color: #F3F3F3;}    
+.color_333{color: #333;}    
+.color_666{color: #666;}     
+.color_999{color: #999;}
+   
+.color_teal{color: teal;}    
+.cstellblue{color: steelblue;}    
+.cstellblue:hover {color: #369;}
+
+.font_12{font-size: 12px;}
+.font_13{font-size: 13px;}    
+.font_14{font-size: 14px;}    
+.font_16{font-size: 16px;}
+.font_18{font-size: 18px;} 
+.font_24{font-size: 24px;}    
+    
+.fix_W100{width: 100%;}
+    
+input[type=text].fix_brdb,
+input[type=password].fix_brdb,
+input[type=file].fix_brdb{
+    border-width: 0;
+    border-bottom-width: 1px;
+    }
+
+.nowrap{white-space: nowrap;}    
+
+.nohref, .nohref:hover{cursor: auto; text-decoration: none;}  
+
+.noMargin {margin: 0;}
+
+.noMarginB {margin-bottom: 0;}
+
+.noMarginL {margin-left: 0;}
+
+.noMarginR {margin-right: 0;}
+
+.noPadd {padding: 0;}  
+
+.noPaddB {padding-bottom: 0;}
+
+.noPaddL {padding-left: 0;}
+
+.noPaddR {padding-right: 0;}
+   
+.fix_noBg {background: none;}
+
+/*-- loading effect styles --*/
+
+/*-- icn_border --*/
+.icn-border{position: relative;	vertical-align: text-bottom; display: inline-block;	font-size: 12px; width: 0; height: 0;}
+
+.icn-border.direct-r{border-top: 5px solid transparent;	border-bottom: 5px solid transparent; border-left: 10px solid #999;}
+.icn-border.direct-b{border-right: 5px solid transparent;	border-left: 5px solid transparent; border-top: 10px solid #999;}
+
+.msgNormal
+{
+    background: url(../images/validate_normal.gif) no-repeat 0 1px;
+    padding-left: 25px;
+    color: #999;
+    font-size: 12px;
+}
+
+.msgAlert
+{
+    background: url(../images/icn_warning.png) no-repeat;
+    background-position: 0 1px;
+    margin: 0 0 0 1%;
+    padding-left: 20px;
+    color: #e40;
+    font-size: 12px;
+}
+
+

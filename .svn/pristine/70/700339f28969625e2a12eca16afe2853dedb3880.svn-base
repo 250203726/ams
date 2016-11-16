@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.ams.assetmanage.maintenanceRecord.entity.MaintenanceRecord" table="t_maintenancerecord">
+
+<id length="32" name="maintenancerecordId" type="string">
+   <column length="32" name="maintenancerecordId" not-null="true"/>
+   <generator class="assigned"/>
+</id>
+
+<property generated="never" lazy="false" name="assetId" type="string">
+   <column length="32" name="assetId">
+    <comment>资产编号</comment>
+   </column>
+</property>
+
+<property generated="never" lazy="false" name="recordPeople" type="string">
+   <column length="50" name="recordPeople">
+    <comment>检修成员</comment>
+   </column>
+</property>
+
+<property generated="never" lazy="false" name="recordInfo" type="string">
+   <column length="200" name="recordInfo">
+    <comment>检修性质</comment>
+   </column>
+</property>
+
+<property generated="never" lazy="false" name="repairTime" type="timestamp">
+   <column name="repairTime">
+    <comment>检修日期</comment>
+   </column>
+</property>
+
+<property generated="never" lazy="false" name="repairExstatus" type="string">
+   <column length="200" name="repairExstatus">
+    <comment>检修前状态</comment>
+   </column>
+</property>
+
+<property generated="never" lazy="false" name="repairContent" type="string">
+   <column length="200" name="repairContent">
+    <comment>检修内容</comment>
+   </column>
+</property>
+
+<property generated="never" lazy="false" name="repairAftstatus" type="string">
+   <column length="200" name="repairAftstatus">
+    <comment>检修后状态</comment>
+   </column>
+</property>
+
+<property generated="never" lazy="false" name="acceptancePerson" type="string">
+   <column length="50" name="acceptancePerson">
+    <comment>验收人</comment>
+   </column>
+</property>
+
+<property generated="never" lazy="false" name="recordTime" type="timestamp">
+   <column name="recordTime">
+    <comment>记录时间</comment>
+   </column>
+</property>
+
+<property generated="never" lazy="false" name="acceptanceEvaluation" type="string">
+   <column length="200" name="acceptanceEvaluation">
+    <comment>验收评价</comment>
+   </column>
+</property>
+
+ </class>
+</hibernate-mapping>

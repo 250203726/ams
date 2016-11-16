@@ -1,0 +1,86 @@
+@CHARSET "UTF-8";
+
+/*-- 为了使这种样式与打印机之间配合更好一些，你要将颜色改为白色背景黑色字体 --*/
+body {
+	font-family: '楷体', Helvetica, "songti", sans-serif;
+	font-size: 12pt; 
+	background-color: white; 
+	color: black; 
+	margin: 0pt;
+	padding: 0pt;	
+}
+
+a:link,a:visited {
+	color: #3333CC;
+	text-decoration: underline; 
+	font-weight: bold; 
+}
+
+h1 {
+   color: black;
+}
+
+h2{
+   color: gray;
+}
+
+/*-- 设置宽度：100%，这种设置会填充页面上可以打印的部分。 --*/
+
+div.print-box#content{
+	background-color: white;
+	width: 100%;
+	margin: 0pt auto; 
+}
+
+div.print-box .print-inner{	
+	font-family: "楷体";
+	background-color: white;
+	padding: 10mm 5mm; 
+	height: 246mm;
+}
+
+div.print-box .print-inner-herizon{
+	background-color: white;
+	padding: 20mm 20mm; 
+}	
+
+div.print-box#content table{
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+div.print-box#content table caption {
+	color: black;
+	font-family: "黑体", arial, "songti", "宋体", sans-serif;
+	font-size: 2em;
+	font-weight: 700;
+	padding: 0 0 10pt 0;
+}
+
+div.print-box#content table th.headtext,div.print-box#content table td.headtext{
+	border-width: 0pt;
+	text-align: left;
+}
+
+div.print-box#content table tr td{
+	padding: 3.3mm;
+	text-align: center;
+	border: 1px solid black;
+	height: 23pt;
+}
+
+td.minwidth1{width: 20mm;}
+
+div.print-box#content table tr td p{margin: 0pt; padding: 0pt; line-height: 20pt; text-indent: 2em;}
+
+div.print-box#content table tr.rows2 td{height: 60pt;}
+
+div.print-box#content table tr.multiline td{height: 80pt;}
+
+div.print-box#content table tr.multiline2 td{height: 110pt;}
+
+th.nowrap, td.nowrap{white-space: nowrap;}
+.textleft, div.print-box#content table tr td.textleft{text-align: left;}
+.textcenter, div.print-box#content table tr td.textcenter{text-align: center;}
+.textright, div.print-box#content table tr td.textright{text-align: right;}

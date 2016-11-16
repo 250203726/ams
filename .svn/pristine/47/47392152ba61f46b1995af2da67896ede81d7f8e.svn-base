@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-1-2 13:38:43 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.ams.system.entity.Manager" table="t_manager" >
+        <id name="managerId" type="string">
+            <column name="managerId" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="managerName" type="string">
+            <column name="managerName" length="50" not-null="true">
+                <comment>姓名</comment>
+            </column>
+        </property>
+        <property name="code" type="string">
+            <column name="code" length="2" >
+                <comment>代号</comment>
+            </column>
+        </property>
+        <property name="enable" type="string">
+            <column name="enable" length="11" not-null="true" />
+        </property>
+        <property name="tel" type="string">
+            <column name="tel" length="20">
+                <comment>联系方式</comment>
+            </column>
+        </property>
+        <property name="refuser" type="string">
+            <column name="refuser" length="32">
+                <comment>关联登录账户</comment>
+            </column>
+        </property>
+        <property name="createUser" type="string">
+            <column name="createUser" length="32" />
+        </property>
+        <property name="createTime" type="timestamp">
+            <column name="createTime" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

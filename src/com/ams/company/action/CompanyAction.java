@@ -1,0 +1,185 @@
+package com.ams.company.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ams.company.entity.Company;
+import com.ams.company.model.CompanyModel;
+import com.ams.company.service.CompanyService;
+import com.ams.customer.service.CustomerService;
+import com.core.action.BaseAction;
+import com.core.model.OutputMessage;
+import com.util.enums.PageSizeEnum;
+import com.util.json.JackJsonUtils;
+import com.util.page.Pager;
+import com.util.page.PagerHelper;
+
+/**
+ * 单位管理
+ * @author Wymann
+ * @Data 2014-12-3 下午02:28:28
+ *
+ */
+@Controller
+public class CompanyAction extends BaseAction{
+
+	private static final long serialVersionUID = 96172069305589029L;
+	
+	@Resource
+	private CompanyService companyService;
+	@Resource
+	private CustomerService customerService;
+	
+	/**
+	 * 跳转到新建页面
+	 * @return
+	 */
+	@RequestMapping(value="/company/add")
+	public String add(){
+		return COMPANY+"edit"; // AMS/company/edit.jsp
+	}
+	
+	/**
+	 * 保存
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/company/save",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String save(Company model){
+		OutputMessage msg=new OutputMessage();
+		if(null!=model){
+			if(StringUtils.isNotEmpty(model.getCompanyId())){//修改
+				Company company=companyService.getById(model.getCompanyId());
+				if(null!=company){
+					companyService.update(model);
+					msg=setOutputMessage(true, "修改成功！", model.getCompanyId());
+				}else{
+					msg=setOutputMessage(false, "该单位已经被删除！", model.getCompanyId());
+				}
+			}else{//保存
+				if(checkCompany(model.getCompanyName(),null).equals("false")){//如果客户不存在
+					companyService.save(model);
+					msg=setOutputMessage(true, "新建成功！", model.getCompanyId());
+				}else{
+					msg=setOutputMessage(false, "单位名已存在！", model.getCompanyId());
+				}
+			}
+		}else{
+			msg=setOutputMessage(false, "数据为空", null);
+		}
+		return JackJsonUtils.toJSon(msg);
+	}
+
+	/**
+	 * 跳转到编辑页面
+	 * @return
+	 */
+	@RequestMapping(value="/company/edit")
+	public String edit(String id,ModelMap map){
+		if(StringUtils.isNotEmpty(id)){
+			Company model=companyService.getById(id);
+			map.addAttribute("model", model);
+			return COMPANY+"edit";
+		}else{
+			this.returnException("单位编号不不存在，不能编辑！");
+		}
+		return ERROR;
+		
+	}
+	
+	/**
+	 * 跳转到详细页面
+	 * @return
+	 */
+	@RequestMapping(value="/company/detail")
+	public String detail(String id,ModelMap map){
+		if(StringUtils.isNotEmpty(id)){
+			Company model=companyService.getById(id);
+			map.addAttribute("model", model);
+			return COMPANY+"detail";
+		}else{
+			this.returnException("单位编码不存在，查看不了详细！");
+		}
+		return ERROR;
+	}
+	
+	/**
+	 * 物理删除客户信息
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/company/delete",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String delete(String id){
+		OutputMessage msg=new OutputMessage();
+		if(StringUtils.isNotEmpty(id)){
+			companyService.delete(id);
+			msg=setOutputMessage(true, "操作成功！", id);
+		}else{
+			msg=setOutputMessage(false, "操作失败，客户Id为空！", id);
+		}
+		return JackJsonUtils.toJSon(msg);
+	}
+	
+	/**
+	 * 跳转到列表页面
+	 * @return
+	 */
+	@RequestMapping(value="/company/toList")
+	public String toList(){
+		return COMPANY+"list";
+	}
+	
+	/**
+	 * 局部刷新翻页
+	 * @return
+	 */
+	@RequestMapping(value="/company/list",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String list(CompanyModel model){
+		Pager page=PagerHelper.getInstance(this.getRequest(), PageSizeEnum.MIDDLE);
+		List<CompanyModel> list=companyService.findByCondition(model,page);
+		page.setRows(list);
+		return JackJsonUtils.toJSon(page);
+	}
+	
+	/**
+	 * 打开弹出框内容
+	 * @return
+	 */
+	@RequestMapping(value="/company/toPopList")
+	public String toPopList(CompanyModel model,ModelMap map){
+		map.addAttribute("model", model);
+		return COMPANY+"companyPop";
+	}
+	
+	/**
+	 * 弹出框局部刷新
+	 */
+	@RequestMapping(value="/company/popList",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String popList(CompanyModel model){
+		Pager page=PagerHelper.getInstance(this.getRequest(), PageSizeEnum.MIDDLE);
+		List<CompanyModel> list=companyService.findByCondition(model,page);
+		page.setRows(list);
+		return JackJsonUtils.toJSon(page);
+	}
+	
+	/**
+	 * 检查客户名是否存在
+	 * @param customerName
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/company/checkCompany",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String checkCompany(String name, String id) {
+		boolean flag=false;
+		flag=companyService.checkCompany(name,id);
+		return String.valueOf(flag);
+	}
+	
+}

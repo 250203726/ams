@@ -1,0 +1,36 @@
+@charset "utf-8";
+/*-- Css Document for Entrance Style, by Jack --*/
+
+/*-- entrance --*/
+*{ padding:0; margin:0;}
+html, body{height: 100%; }
+body{font-size: 14px; text-align:center; background: rgb(53, 154, 151) url(../../images/login/bg_teal.gif) repeat 0 0;}
+
+.loginbox{position:absolute; top: 50%; left: 50%; margin: -275px 0 0 -370px; width:740px; height: 464px; font-size:12px;}
+.loginbox .loginlogo{ width:700px; height:100px; overflow:hidden; background:url('../../images/login/icn_logo.png') no-repeat;}
+.loginbox .loginpanel{ width:729px; position:relative;height:300px;}
+
+.panel-h{ width:729px; height:20px; background:url('../../images/login/panel-h-teal.gif') no-repeat; position:absolute; top:0px; left:0px; z-index:3;}
+.panel-f{ width:729px; height:13px; background:url('../../images/login/panel-f-teal.gif') no-repeat; position:absolute; bottom:0px; left:0px; z-index:3;}
+.panel-c{ z-index:2;background:url('../../images/login/panel-c-teal.gif') repeat-y;width:729px; height:300px;}
+.panel-c-l{ position:absolute; left:60px; top: 25px; width:330px;}
+.panel-c-r{ position:absolute; right:20px; top:50px; width:222px; line-height:200%; text-align:left;}
+.panel-c-l h3{ color:#556A85;}
+.panel-c-l table{width: 100%;}
+.panel-c-l td{ padding:7px;}
+
+.login-text{ height:24px; left:24px; border:1px solid #D0D1D4; background:#f9f9f9;}
+.login-text-focus{ border:1px solid #E6BF73;}
+.login-btn{width:114px; height:29px; color:#E9FFFF; line-height:29px; background:url('../../images/login/login-btn-teal.gif') no-repeat; border:none; overflow:hidden; cursor:pointer;}
+
+.login-text{ width:191px; padding-left: 4px;} 
+.logincopyright{ font-family: arial, "黑体", Sans-Serif; text-align: center; color: White; margin-top: 50px;}
+
+td.right{text-align: right; text-indent: 2em;}
+td.left{text-align: left;}
+
+.t-orgname{color: teal; font-size: 14px;}
+.ul-tips{list-style: disc; list-style-position: inside;}
+
+.panel-c-l .title{display: block; padding: 0 10px; height: 34px; line-height: 34px; background-color: rgb(53, 154, 151); color: #fff; font-size: 14px; font-weight: bold;}
+.icn-border.direct-r.r-ext{display: block; vertical-align: bottom; border-top: 5px solid #04544E; border-right: 5px solid #04544E; border-bottom: 5px solid transparent; border-left: 5px solid transparent;}

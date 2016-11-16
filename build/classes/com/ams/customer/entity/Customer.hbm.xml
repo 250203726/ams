@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-12 18:02:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.ams.customer.entity.Customer" table="t_customer" >
+        <id name="customerId" type="string">
+            <column name="customer_Id" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="customerCode" type="string">
+            <column name="customer_Code" length="50">
+                <comment>组织机构代码</comment>
+            </column>
+        </property>
+        <property name="customerName" type="string">
+            <column name="customer_Name" length="1024" not-null="true">
+                <comment>客户名称</comment>
+            </column>
+        </property>
+        <property name="customerType" type="string">
+            <column name="customer_Type" length="11">
+                <comment>客户类型</comment>
+            </column>
+        </property>
+        <property name="contactPerson" type="string">
+            <column name="contact_Person" length="50">
+                <comment>联系人</comment>
+            </column>
+        </property>
+        <property name="contatctPhone" type="string">
+            <column name="contatct_Phone" length="20">
+                <comment>联系电话</comment>
+            </column>
+        </property>
+        <property name="contatctAddress" type="string">
+            <column name="contatct_Address" length="1024">
+                <comment>地址</comment>
+            </column>
+        </property>
+        <property name="customerNote" type="string">
+            <column name="customer_Note" length="65535">
+                <comment>说明</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

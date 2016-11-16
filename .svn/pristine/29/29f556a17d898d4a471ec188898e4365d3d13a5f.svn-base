@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-6-11 20:09:37 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.ams.system.entity.Code" table="t_code" >
+        <id name="codeId" type="string">
+            <column name="codeId" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="code" type="string">
+            <column name="code" length="32" not-null="true">
+                <comment>简码</comment>
+            </column>
+        </property>
+        <property name="codeName" type="string">
+            <column name="codeName" length="32" not-null="true">
+                <comment>简码名称</comment>
+            </column>
+        </property>
+        <property name="modelType" type="string">
+            <column name="modelType" length="32" not-null="true">
+                <comment>模块类型</comment>
+            </column>
+        </property>
+        <property name="codeType" type="string">
+            <column name="codeType" length="32" not-null="true">
+                <comment>简码类型</comment>
+            </column>
+        </property>                
+        <property name="sort" type="string">
+            <column name="sort" length="11" not-null="true">
+                <comment>排序</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

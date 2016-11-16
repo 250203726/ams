@@ -1,0 +1,144 @@
+package com.ams.assetmanage.assetinf.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
+
+import com.ams.assetmanage.assetinf.dao.AssetinfDao;
+import com.ams.assetmanage.assetinf.entity.Assetinf;
+import com.ams.assetmanage.assetinf.service.AssetinfService;
+import com.util.generator.IdGenerator;
+import com.util.page.Pager;
+
+/**
+ * 资产管理
+ * 
+ * @author 
+ * @Data 
+ * 
+ */
+@Service
+public class AssetinfServiceImpl implements AssetinfService {
+
+	@Resource
+	private AssetinfDao assetinfDao;
+
+	/**
+	 * 保存资产
+	 * 
+	 * @param model
+	 * @return
+	 */
+	public Assetinf save(Assetinf assetinf) {
+		if (null != assetinf) {
+			assetinf.setassetId(IdGenerator.getInstance().getId());
+			assetinfDao.save(assetinf);
+		}
+		return assetinf;
+	}
+
+	/**
+	 * 修改资产
+	 * 
+	 * @param model
+	 * @return
+	 */
+	public Assetinf update(Assetinf model) {
+		if (null != model && StringUtils.isNotEmpty(model.getassetId())) {
+			Assetinf assetinf= assetinfDao.get(model.getassetId());
+			if (null != assetinf) {
+				assetinf.setassetId(model.getassetId());
+				assetinf.setassetnameId(model.getassetnameId());
+				assetinf.setassetserialCode(model.getassetserialCode());
+				assetinf.setprojectNumber(model.getprojectNumber());
+				assetinf.setassetBrand(model.getassetBrand());
+				assetinf.setassetinfoVersion(model.getassetinfoVersion());
+				assetinf.setassetinfoPrice(model.getassetinfoPrice());
+				assetinf.setassetinfoPic(model.getassetinfoPic());
+				assetinf.setassetStatus(model.getassetStatus());
+				assetinf.setagentPurchaser(model.getagentPurchaser());
+				assetinf.setuserId(model.getuserId());
+				assetinf.setassetmadeTime(model.getassetmadeTime());
+				assetinf.setassetinfoTime(model.getassetinfoTime());
+				assetinf.setStartUseTime(model.getStartUseTime());
+				assetinf.setassetfactoryId(model.getassetfactoryId());
+				assetinf.setsupplierId(model.getsupplierId());
+				assetinf.setprojectId(model.getprojectId());
+				assetinf.setmaintenanceId(model.getmaintenanceId());
+				assetinf.setinstaLocation(model.getinstaLocation());
+				assetinf.setUsedYears(model.getUsedYears());
+				assetinf.setLifeYears(model.getLifeYears());
+				assetinf.setRemark(model.getRemark());
+				assetinfDao.update(assetinf);
+				return assetinf;
+			}
+		}
+		return model;
+	}
+
+	/**
+	 * 删除资产信息
+	 * 
+	 * @param id
+	 */
+	public void delete(String id) {
+		if (StringUtils.isNotEmpty(id)) {
+			Assetinf assetinf = assetinfDao.get(id);
+			assetinfDao.delete(assetinf);
+		}
+	}
+
+	/**
+	 * 根据id查找资产信息
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Assetinf getById(String id) {
+		if (StringUtils.isNotEmpty(id)) {
+			Assetinf assetinf = assetinfDao.get(id);
+			return assetinf;
+		}
+		return null;
+	}
+
+	/**
+	 * 条件查询
+	 * 
+	 * @param model
+	 * @param page
+	 * @return
+	 */
+	public List<Assetinf> findByCondition(Assetinf model, Pager page) {
+		return assetinfDao.findByCondition(model, page);
+	}
+
+	/**
+	 * 检查当前资产是否存在
+	 * 
+	 * @param name
+	 * @param id
+	 * @return
+	 */
+	public boolean checkAssetinf(String id) {
+		List<Assetinf> list = assetinfDao.checkAssetinf(id);
+		if (!list.isEmpty() && list.size() > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 根据名称获取资产信息
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public Assetinf getByName(String name) {
+		return assetinfDao.getByName(name);
+	}
+
+}

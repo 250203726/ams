@@ -1,0 +1,91 @@
+package com.ams.assetmanage.assetinf.service;
+
+import java.util.List;
+
+import com.ams.assetmanage.assetinf.entity.Assetinf;
+import com.ams.assetmanage.assetinf.model.AssetinfModel;
+import com.util.page.Pager;
+
+/**
+ * 资产信息管理
+ * 
+ * @author 
+ * @Data 
+ * 
+ */
+public interface AssetinfService {
+
+	/**
+	 * 保存资产
+	 * 
+	 * @param model
+	 * @return
+	 */
+	Assetinf save(Assetinf model);
+
+	/**
+	 * 修改资产
+	 * 
+	 * @param model
+	 * @return
+	 */
+	Assetinf update(Assetinf model);
+
+	/**
+	 * 删除资产信息
+	 * 
+	 * @param id
+	 */
+	void delete(String id);
+
+	/**
+	 * 根据id查找资产信息
+	 * 
+	 * @param id
+	 * @return
+	 */
+	Assetinf getById(String id);
+
+	/**
+	 * 条件查询
+	 * 
+	 * @param model
+	 * @param page
+	 * @return
+	 */
+	List<Assetinf> findByCondition(Assetinf model, Pager page);
+
+	/**
+	 * 视图条件查询
+	 * @param model
+	 * @param page
+	 * @return
+	 */
+	List<AssetinfModel> findModelByCondition(AssetinfModel model, Pager page);
+	
+	/**
+	 * 检查资产是否存在
+	 * 
+	 * @param name
+	 * @return
+	 */
+	boolean checkAssetinf(String id);
+
+	/**
+	 * 根据资产名id获取资产信息
+	 * 
+	 * @param id
+	 * @return
+	 */
+	Assetinf getByName(String name);
+	
+	/***
+	 * 根据id查询model
+	 * @author simon
+	 * @date 2016年11月15日 下午12:54:00
+	 * @param id
+	 * @return
+	 */
+	AssetinfModel getModelById(String id);
+
+}

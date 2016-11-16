@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-5-10 21:21:33 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.ams.system.entity.Auth" table="t_auth">
+        <id name="authId" type="string">
+            <column name="auth_Id" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="parentId" type="string">
+            <column name="parentId" length="32" not-null="true">
+                <comment>父亲节点，根节点为0</comment>
+            </column>
+        </property>        
+        <property name="authName" type="string">
+            <column name="authName" length="50" not-null="true">
+                <comment>权限名称</comment>
+            </column>
+        </property>
+        <property name="authority" type="int">
+            <column name="authority" not-null="true">
+                <comment>权限值</comment>
+            </column>
+        </property>
+        <property name="sortCode" type="int">
+            <column name="sortCode" >
+                <comment>显示顺序</comment>
+            </column>
+        </property>
+        <property name="enable" type="string">
+            <column name="enable" length="11" not-null="true">
+                <comment>是否启用</comment>
+            </column>
+        </property>
+        <property name="base" type="string">
+            <column name="base" length="1" >
+                <comment>是否基础权限</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-12 18:02:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.ams.infomanage.depart.entity.Depart" table="t_depart" >
+        <id name="departId" type="string">
+            <column name="departId" length="32" >
+            	<comment>部门编号</comment>
+            </column>
+            <generator class="assigned" />
+        </id>
+        <property name="departName" type="string">
+            <column name="departName" length="50">
+                <comment>部门名称</comment>
+            </column>
+        </property>
+        <property name="departAdd" type="string">
+            <column name="departAdd" length="100">
+                <comment>部门地址</comment>
+            </column>
+        </property>
+        <property name="departOwner" type="string">
+            <column name="departOwner" length="50">
+                <comment>部门负责人</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,107 @@
+package com.ams.assetmanage.assetpurchaseapplication.model;
+
+import java.sql.Timestamp;
+
+/**
+ * 资产购置申请的视图实体
+ * @author simon
+ */
+public class AssetpurchaseapplicationModel {
+
+	private String purchaseapplicationId ;		//主键
+	private String userId;						//用户编号
+	private String purchaseDepartment;			//请购部门
+	private String Applicant;					//申请人编号
+	private Timestamp applicationTime;			//申请时间
+	private String assetnameId;					//资产名称编号
+	private String specificationModel;			//规格型号
+	private Integer purchaseQuantity;			//申购数量
+	private Float budgetFunds;					//预算资金
+	private String purchaseReason;				//请购理由及用途
+	private String remark;						//备注
+	private String approveOpinion;				//审批意见
+	private String Approver;					//审批人
+	
+	public String getPurchaseapplicationId() {
+		return purchaseapplicationId;
+	}
+	public void setPurchaseapplicationId(String purchaseapplicationId) {
+		this.purchaseapplicationId = purchaseapplicationId;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getPurchaseDepartment() {
+		return purchaseDepartment;
+	}
+	public void setPurchaseDepartment(String purchaseDepartment) {
+		this.purchaseDepartment = purchaseDepartment;
+	}
+	public String getApplicant() {
+		return Applicant;
+	}
+	public void setApplicant(String applicant) {
+		Applicant = applicant;
+	}
+	public Timestamp getApplicationTime() {
+		return applicationTime;
+	}
+	public void setApplicationTime(Timestamp applicationTime) {
+		this.applicationTime = applicationTime;
+	}
+	public String getAssetnameId() {
+		return assetnameId;
+	}
+	public void setAssetnameId(String assetnameId) {
+		this.assetnameId = assetnameId;
+	}
+	public String getSpecificationModel() {
+		return specificationModel;
+	}
+	public void setSpecificationModel(String specificationModel) {
+		this.specificationModel = specificationModel;
+	}
+	public Integer getPurchaseQuantity() {
+		return purchaseQuantity;
+	}
+	public void setPurchaseQuantity(Integer purchaseQuantity) {
+		this.purchaseQuantity = purchaseQuantity;
+	}
+	public Float getBudgetFunds() {
+		return budgetFunds;
+	}
+	public void setBudgetFunds(Float budgetFunds) {
+		this.budgetFunds = budgetFunds;
+	}
+	public String getPurchaseReason() {
+		return purchaseReason;
+	}
+	public void setPurchaseReason(String purchaseReason) {
+		this.purchaseReason = purchaseReason;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+	public String getApproveOpinion() {
+		return approveOpinion;
+	}
+	public void setApproveOpinion(String approveOpinion) {
+		this.approveOpinion = approveOpinion;
+	}
+	public String getApprover() {
+		return Approver;
+	}
+	public void setApprover(String approver) {
+		Approver = approver;
+	}
+	
+	
+	
+
+}

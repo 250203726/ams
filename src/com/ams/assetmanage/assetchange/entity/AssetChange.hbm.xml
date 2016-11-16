@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-12 18:02:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+	<class name="com.ams.assetmanage.assetchange.entity.AssetChange"
+		table="t_assetchangeinfo">
+		<id name="aciId" type="string">
+			<column length="32" name="aciId">
+				<comment>资产调拨编号</comment>
+			</column>
+			<generator class="assigned" />
+		</id>
+		<property generated="never" lazy="false" name="assetId" type="string">
+			<column length="32" name="assetId">
+				<comment>资产编号，外键</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="originalDepartment"
+			type="string">
+			<column length="50" name="originalDepartment">
+				<comment>原使用部门</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="originalPrincipal"
+			type="string">
+			<column length="50" name="originalPrincipal">
+				<comment>原负责人</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="nowDepartment"
+			type="string">
+			<column length="50" name="nowDepartment">
+				<comment>现使用部门</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="nowPrincipal"
+			type="string">
+			<column length="50" name="nowPrincipal">
+				<comment>现负责人</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="changeTmie"
+			type="timestamp">
+			<column length="0" name="changeTmie">
+				<comment>调拨时间</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="assetStatus"
+			type="string">
+			<column length="50" name="assetStatus">
+				<comment>资产状态</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="asseAttach"
+			type="string">
+			<column length="50" name="asseAttach">
+				<comment>资产附件</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="Remark" type="string">
+			<column length="100" name="Remark">
+				<comment>备注</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>

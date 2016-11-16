@@ -1,0 +1,110 @@
+package com.ams.system.dao.impl;
+
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.stereotype.Repository;
+
+import com.ams.BaseConst;
+import com.ams.system.dao.UserDao;
+import com.ams.system.entity.User;
+import com.ams.system.model.UserModel;
+import com.core.dao.impl.BaseDaoImpl;
+import com.util.enums.dic.StateEnum;
+import com.util.page.Pager;
+
+/**
+ * 用户管理
+ * @author Wymann
+ * @Date 2014-5-10 下午10:08:57
+ *
+ */
+@Repository
+public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao{
+	
+	/**
+	 * 用户登录验证
+	 * @param user
+	 * @return 
+	 * @author Whymann 2014-5-11 上午01:09:35
+	 */
+	@Override
+	public User queryUserByUser(String username, String password) {
+		log.info("开始查询用户信息");
+		try{
+			StringBuffer sql=new StringBuffer();
+			sql.append("  select a.*							        ");
+			sql.append("  from t_user a									");
+			sql.append("  where a.userName = '"+username+"'	");
+			sql.append(" and a.password='"+password+"'		");
+			sql.append(" and a.enable='"+StateEnum.VALID.toString()+"'");
+			
+			List<User> list=getJdbcTemplate().query(sql.toString(), new BeanPropertyRowMapper<User>(User.class));
+			if(!list.isEmpty() && list.size()>0){
+				return list.get(0);
+			}
+			return null;
+		}catch(RuntimeException e){
+			log.error(" 查询用户信息失败 ", e);
+			throw e;
+		}
+	}
+
+	/**
+	 * 条件查询
+	 * @param model
+	 * @param page
+	 * @return 
+	 * @author Whymann 2014-5-12 下午05:57:04
+	 */
+	@Cacheable(value="myCache")
+	public List<User> findByCondition(UserModel model, Pager page) {
+		log.info("条件查询...");
+		try{
+			StringBuffer sql=new StringBuffer();
+			sql.append("SELECT a.user_Id, a.userName, a.realName, a.phone, b. Name AS enable ");
+			sql.append("  FROM t_user a ");
+			sql.append("  LEFT JOIN t_dictionary b ");
+			sql.append("    ON b. value = a.enable ");
+			sql.append("   AND b.Groupname = '"+BaseConst.DIC_STATE+"' ");
+			sql.append(" where 1=1	");
+			if(StringUtils.isNotEmpty(model.getName())){
+				sql.append("   and a.userName like '"+model.getName()+"%' ");
+			}
+			if(StringUtils.isNotEmpty(model.getEnable())){
+				sql.append("   and a.enable = '"+model.getEnable()+"' ");
+			}
+			sql.append(" order by a.user_Id desc ");
+			
+			return jdbcQuery(sql.toString(), page, User.class);
+		}catch(RuntimeException e){
+			log.error("条件查询失败，请检查！", e);
+			throw e;
+		}
+	}
+
+	/**
+	 * 检查用户名是否存在
+	 * @param userName
+	 * @return 
+	 * @author Whymann 2014-5-13 上午11:50:27
+	 */
+	public List<User> checkUser(String userName) {
+		log.info("开始查询用户信息");
+		try{
+			StringBuffer sql=new StringBuffer();
+			sql.append("  select a.*							        ");
+			sql.append("  from t_user a									");
+			sql.append("  where a.userName = '"+userName+"'	");
+			sql.append(" limit 1 ");
+			
+			return getJdbcTemplate().query(sql.toString(), new BeanPropertyRowMapper<User>(User.class));
+		}catch(RuntimeException e){
+			log.error(" 查询用户信息失败 ", e);
+			throw e;
+		}
+	}
+
+}

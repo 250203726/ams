@@ -1,0 +1,153 @@
+package com.ams.assetmanage.assetpurchaseapplication.dao.impl;
+
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.stereotype.Repository;
+
+import com.ams.BaseConst;
+import com.ams.company.dao.CompanyDao;
+import com.ams.company.entity.Company;
+import com.ams.company.model.CompanyModel;
+import com.ams.assetmanage.assetpurchaseapplication.dao.AssetpurchaseapplicationDao;
+import com.ams.assetmanage.assetpurchaseapplication.entity.Assetpurchaseapplication;
+import com.ams.assetmanage.assetpurchaseapplication.model.AssetpurchaseapplicationModel;
+import com.ams.assetmanage.maintenanceRecord.model.MaintenanceRecordModel;
+import com.core.dao.impl.BaseDaoImpl;
+import com.util.page.Pager;
+
+/**
+ * 资产购置申请管理
+ * @author Wymann
+ * @Data 2014-12-12 下午06:12:46
+ *
+ */
+@Repository
+public class AssetpurchaseapplicationDaoImpl extends BaseDaoImpl<Assetpurchaseapplication> implements AssetpurchaseapplicationDao{
+
+	/**
+	 * 条件查询
+	 * @param model
+	 * @param page
+	 * @return
+	 */
+	public List<AssetpurchaseapplicationModel> findByCondition(AssetpurchaseapplicationModel model, Pager page) {
+		log.info("资产购置申请管理条件查询...");
+		try{
+			StringBuffer sql=new StringBuffer();
+			sql.append(" select a.purchaseapplicationId,b.userName as userId,a.purchaseDepartment,a.applicant,a.applicationTime,c.assetName as assetnameId, ");
+			sql.append(" a.specificationModel,a.purchaseQuantity,a.budgetFunds,a.purchaseReason,a.remark,a.approveOpinion,a.approver ");
+			sql.append(" from t_assetpurchaseapplication a LEFT JOIN t_user b ON a.userId=b.user_Id LEFT JOIN t_assetname c ON a.assetnameId=c.assetnameId ");
+			sql.append(" where 1 = 1 ");
+			if(StringUtils.isNotEmpty(model.getUserId())){
+				sql.append("   and b.userName = '"+model.getUserId()+"' ");
+			}
+			if(StringUtils.isNotEmpty(model.getAssetnameId())){
+				sql.append("   and c.assetName = '"+model.getAssetnameId()+"' ");
+			}
+			if(StringUtils.isNotEmpty(model.getPurchaseDepartment())){
+				sql.append("   and a.purchaseDepartment = '"+model.getPurchaseDepartment()+"' ");
+			}
+			if(StringUtils.isNotEmpty(model.getApprover())){
+				sql.append("   and a.approver = '"+model.getApprover()+"' ");
+			}
+			if(StringUtils.isNotEmpty(model.getApproveOpinion())){
+				sql.append("   and a.approveOpinion = '"+model.getApproveOpinion()+"' ");
+			}
+			
+			/*if(StringUtils.isNotEmpty(model.getApplicant())){
+				sql.append("   and a.applicant = '"+model.getApplicant()+"' ");
+			}
+			if(StringUtils.isNotEmpty(model.getApplicationTime())){
+				sql.append("   and a.applicationTime like '%"+model.getApplicationTime()+"%' ");
+			}			
+			if(StringUtils.isNotEmpty(model.getSpecificationModel())){
+				sql.append("   and a.specificationModel = '"+model.getSpecificationModel()+"' ");
+			}
+			if(StringUtils.isNotEmpty(model.getPurchaseQuantity())){
+				sql.append("   and a.purchaseQuantity like '%"+model.getPurchaseQuantity()+"%' ");
+			}
+			if(model.getBudgetFunds().isNaN()){
+				sql.append("   and a.budgetFunds = '"+model.getBudgetFunds()+"' ");
+			}
+			if(StringUtils.isNotEmpty(model.getPurchaseReason())){
+				sql.append("   and a.purchaseReason = '"+model.getPurchaseReason()+"' ");
+			}
+			if(StringUtils.isNotEmpty(model.getRemark())){
+				sql.append("   and a.remark like '%"+model.getRemark()+"%' ");
+			}
+			if(StringUtils.isNotEmpty(model.getApproveOpinion())){
+				sql.append("   and a.approveOpinion = '"+model.getApproveOpinion()+"' ");
+			}
+			*/
+			sql.append(" order by a.userId, a.assetnameId, a.purchaseDepartment, a.approveOpinion,  a.approver asc");
+			log.info(sql);
+			return jdbcQuery(sql.toString(), page, AssetpurchaseapplicationModel.class);
+		}catch(RuntimeException e){
+			log.error("资产购置申请管理条件查询失败，请检查！", e);
+			throw e;
+		}
+	}
+	
+	/**
+	 * 根据资产id获取单位信息model
+	 */
+	@Override
+	public AssetpurchaseapplicationModel getModel(String id) {
+		AssetpurchaseapplicationModel model = new AssetpurchaseapplicationModel();
+		model.setPurchaseapplicationId(id);
+		List<AssetpurchaseapplicationModel> AssetpurchaseapplicationModel = findByCondition(model, null);
+		if(AssetpurchaseapplicationModel.size()>0){
+			return AssetpurchaseapplicationModel.get(0);
+		}
+		return null;
+	}
+
+	/**
+	 * 根据申请编号获取单位信息
+	 * @param name
+	 * @return
+	 */
+	public Assetpurchaseapplication getByName(String name) {
+		/*log.info("根据单位名称获取单位信息...");
+		try{
+			StringBuffer sql=new StringBuffer();
+			sql.append("select a.* ");
+			sql.append("  from t_company a ");
+			sql.append(" where a.company_Name = '"+name+"' ");
+			sql.append(" limit 1 ");
+			List<Company> list=getJdbcTemplate().query(sql.toString(), new BeanPropertyRowMapper<Company>(Company.class));
+			if(!list.isEmpty() && list.size()>0){
+				return list.get(0);
+			}
+			return null;
+		}catch (RuntimeException e) {
+			log.error("根据单位名称获取单位信息失败，请检查！", e);
+			throw e;
+		}*/
+		log.info("未定义函数功能");
+		return null;
+	}
+
+	@Override
+	public List<Assetpurchaseapplication> checkAssetpurchaseapplication(String name, String id) {
+		log.info("检查当前资产购置申请是否存在...");
+		try{
+			StringBuffer sql=new StringBuffer();
+			sql.append("select a.* ");
+			sql.append("  from t_assetpurchaseapplication a ");
+			sql.append(" where a.purchaseapplicationId  = '"+name+"' ");
+			if(StringUtils.isNotEmpty(id)){
+				sql.append("   and a.purchaseapplicationId  != '"+id+"' ");
+			}
+			sql.append(" limit 1 ");
+			
+			return getJdbcTemplate().query(sql.toString(), new BeanPropertyRowMapper<Assetpurchaseapplication>(Assetpurchaseapplication.class));
+		}catch (RuntimeException e) {
+			log.error("检查当前部门是否存在失败，请检查！", e);
+			throw e;
+		}
+	}
+
+}

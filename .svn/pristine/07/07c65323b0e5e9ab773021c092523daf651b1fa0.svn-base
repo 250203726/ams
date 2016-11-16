@@ -1,0 +1,166 @@
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="common/taglibs.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" ></meta>
+	<title>我的主页</title>
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/index.css">
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.css">
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css"/>
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/base.css">
+	<script src="${path}/resources/js/jquery-1.7.2.min.js" type="text/javascript" ></script>
+	<script src="${path}/resources/js/config.js" type="text/javascript" ></script>
+	<script src="${path}/resources/js/cnDateFn.js" type="text/javascript">
+	<script type="text/javascript">
+		<script type="text/javascript">
+		$(document).ready(function(){
+			var greetings = "";
+			var cur_time = new Date().getHours();
+			if(cur_time >= 0 && cur_time <= 4 ) {
+				greetings = "已经夜深了，请注意休息";
+			} else if (cur_time > 4 && cur_time <= 7 ) {
+				greetings = "早上好";
+			} else if (cur_time > 7 && cur_time < 12 ) {
+				greetings = "上午好";
+			} else if (cur_time >= 12 && cur_time <= 18 ) {
+				greetings = "下午好";
+			} else {
+				greetings = "晚上好";
+			};
+			var greetObj = $("#greetings");
+			var userObj = $("#username");
+			
+			greetObj.text(greetings);
+			userObj.text(parent.SYSTEM.realName);
+			
+			$("#search").click(function(){
+				search();
+			});
+		});	
+	</script>
+</head>
+<body>
+	<div id="hd" class="hd">
+		<p class="alt-today font_13">
+			 <img alt="" src="${path}/resources/images/icn_date.gif" width="14" height="16" />
+             <span>
+                 <script type="text/javascript">
+                     RunGLNL();
+                 </script>
+             </span>
+		</p>
+		<p class="ht_10"></p>
+	  	<p class="welcome">
+	  		<img alt="" src="${path}/resources/images/icn_user_gray.png" width="14" height="16" />
+		  	<strong><span id="greetings">您好</span>，<span id="username">管理员</span>！</strong>
+		  	维护<a data-tabid="khlb" data-tabTxt="客户列表" data-parentOpen="true" rel="pageTab"  href="${path}/customer/toList">「客户」、</a>
+		  	<a data-tabid="dwlb" data-tabTxt="单位列表" data-parentOpen="true" rel="pageTab" href="${path}/company/toList">「施工单位」</a>信息。
+		  	
+	  	</p>
+	</div>
+	<div id="bd" class="clearfix" >
+		<div class="col-main">
+		    <div class="main-wrap cf">
+		      <div class="m-top">
+		      	 <form onsubmit="return search();" method="post">
+			      	 <div class="storages-search">
+			      	 <label for="">合同名称:</label>
+			      	 <span class="ui-search"><input type="text" name="contractName" id="contractName" class="ui-input" /></span>
+			      	 <input type="submit" class="ui-btn" value="查 询" /></div>
+		      	</form>
+		      </div>
+		      <ul class="quick-links">
+		        <li class="contract-huiqian">
+		        	<a data-tabid="" data-tabTxt="公建总包新建" data-parentOpen="true" rel="pageTab" href="${path}/contract/add?moduleType=1">
+		        		<span></span>公建总包新建
+	        		</a>
+		        </li>
+		        <li class="division-edit">
+		        	<a data-tabid="" data-tabTxt="住建总包新建" data-parentOpen="true" rel="pageTab" href="${path}/contract/add?moduleType=2">
+		        		<span></span>住建总包新建
+	        		</a>
+		        </li>
+		        <li class="fund-transfers">
+		        	<a data-tabid=""  data-tabTxt="公建分包新建" data-parentOpen="true" rel="pageTab" href="${path}/contract/subAdd?moduleType=1">
+		        		<span></span>公建分包新建
+		        	</a>
+		        </li>
+		        <li class="statistics-funds">
+		        	<a data-tabid="" data-tabTxt="住建分包新建" data-parentOpen="true" rel="pageTab" href="${path}/contract/subAdd?moduleType=2">
+		        		<span></span>住建分包新建
+		        	</a>
+		        </li>
+		        <li class="customer-list">
+		        	<a data-tabid="" data-tabTxt="施工单新建" data-parentOpen="true" rel="pageTab" href="${path}/gongdan/add">
+		        		<span></span>施工单新建
+		        	</a>
+		        </li>
+		        <li class="manufacturer-list">
+		        	<a data-tabid="" data-tabTxt="施工进度" data-parentOpen="true" rel="pageTab" href="${path }/process/add">
+		        		<span></span>施工进度
+		        	</a>
+		        </li>
+		        <li class="user_list">
+		        	<a data-tabid="" data-tabTxt="资金收款" data-parentOpen="true" rel="pageTab" href="${path}/fund/receipt/add">
+		        		<span></span>资金收款
+		        	</a>
+		        </li>
+		        <li class="feedback">
+		        	<a data-tabid="" data-tabTxt="资金付款计划" data-parentOpen="true" rel="pageTab" href="${path}/fund/pay/add"><span></span>资金付款计划</a>
+		        </li>
+		      </ul>
+		    </div>
+		</div>
+		<div class="col-extra">
+		  <div class="extra-wrap">
+		    <h2>快速查看</h2>
+		    <div class="list">
+		      <ul>
+		      	<li>
+		      		<a href="${path}/report/contractCountByModule" rel="pageTab" data-tabid="httj" data-tabTxt="合同统计" data-parentOpen="true">查看合同统计</a>
+		      	</li>
+		        <li>
+		        	<a href="${path}/fund/list" rel="pageTab" data-tabid="sfkcx" data-tabTxt="收付款查询" data-parentOpen="true">查看资金收付情况</a>
+		        </li>
+		      	<li>
+		      		<a href="${path}/gongdan/toList" rel="pageTab" data-tabid="sgdlb" data-tabTxt="施工单列表" data-parentOpen="true">查看施工单列表</a>
+		      	</li>
+		      	<li>
+		      		<a href="${path}/report/bzgctj" rel="pageTab" data-tabid="bzgctj" data-tabTxt="报装工程统计" data-parentOpen="true" >查看报装工程统计</a>
+		      	</li>
+		      	<li>
+		      		<a href="${path}/report/toCompany" rel="pageTab" data-tabid="fbdwtj" data-tabTxt="分包单位统计" data-parentOpen="true">查看分包单位统计</a>
+		      	</li>
+		        <li>
+		        	<a href="${path}/report/taizhang" rel="pageTab" data-tabid="rwdjtz" data-tabTxt="任务登记台账" data-parentOpen="true">查看任务登记台账</a>
+		       	</li>
+		        <li>
+		        	<a href="${path}/report/qingdan" rel="pageTab" data-tabid="gcxmqd" data-tabTxt="工程项目清单" data-parentOpen="true" >查看工程项目清单</a>
+		        </li>
+		        <li>
+		        	<a href="${path}/report/profit" rel="pageTab" data-tabid="xmyytj" data-tabTxt="项目盈余统计" data-parentOpen="true" >查看项目盈余统计</a>
+		        </li>
+		        <li>
+		        	<a href="${path}/report/divisionProfit" rel="pageTab" data-tabid="qkyytj" data-tabTxt="切块盈余统计" data-parentOpen="true" >查看切块盈余统计</a>
+		        </li>
+		      </ul>
+		    </div>
+		  </div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		Public.pageTab();	
+		function search(){
+			var name= $("#contractName").val();
+			if(parent.tab.isTabItemExist('htzhcx')){
+				parent.tab.removeTabItem('htzhcx');
+			}
+			parent.Public.addTab('htzhcx',"合同信息综合查询","${path}/report/toContractQuery?contractName="+name);
+			return false;
+		}
+	</script>
+</body>
+</html>

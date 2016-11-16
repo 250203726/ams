@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-12 18:02:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.ams.assetmanage.assetpurchaseapplication.entity.Assetpurchaseapplication" table="t_assetpurchaseapplication" >
+        <id name="purchaseapplicationId " type="string">
+            <column name="purchaseapplicationId " length="32" >
+            	<comment>申请编号</comment>
+            </column>
+            <generator class="assigned" />
+        </id>
+        <property name="userId" type="string">
+            <column name="userId" length="32">
+                <comment>用户编号</comment>
+            </column>
+        </property>
+        <property name="purchaseDepartment" type="string">
+            <column name="purchaseDepartment" length="50">
+                <comment>请购部门</comment>
+            </column>
+        </property>
+        <property name="applicant" type="string">
+            <column name="applicant" length="50">
+                <comment>申请人编号</comment>
+            </column>
+        </property>
+        <property name="applicationTime" type="timestamp">
+            <column name="applicationTime" length="0">
+                <comment>申请时间</comment>
+            </column>
+        </property>
+        <property name="assetnameId" type="string">
+            <column name="assetnameId" length="32">
+                <comment>资产名称编号</comment>
+            </column>
+        </property>
+        <property name="specificationModel" type="string">
+            <column name="specificationModel" length="50">
+                <comment>规格型号</comment>
+            </column>
+        </property>
+        <property name="purchaseQuantity" type="integer">
+            <column name="purchaseQuantity" length="11">
+                <comment>申购数量</comment>
+            </column>
+        </property>
+        <property name="budgetFunds" type="float">
+            <column name="budgetFunds" length="0">
+                <comment>预算资金</comment>
+            </column>
+        </property>
+        <property name="purchaseReason" type="string">
+            <column name="purchaseReason" length="100">
+                <comment>请购理由及用途</comment>
+            </column>
+        </property>
+        <property name="remark" type="string">
+            <column name="remark" length="100">
+                <comment>备注</comment>
+            </column>
+        </property>
+        <property name="approveOpinion" type="string">
+            <column name="approveOpinion" length="100">
+                <comment>审批意见</comment>
+            </column>
+        </property>
+        <property name="approver" type="string">
+            <column name="approver" length="20">
+                <comment>审批人</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

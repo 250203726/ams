@@ -1,0 +1,525 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code,
+	form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+
+body, html {
+	height: 100%;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	background: url(../images/bg_body.jpg) repeat 0 0;
+	overflow: hidden;
+}
+
+#pageloading {
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: white url('../images/loading.gif') no-repeat center;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+}
+
+.l-link {
+	display: block;
+	height: 26px;
+	line-height: 26px;
+	padding-left: 10px;
+	text-decoration: underline;
+	color: #333;
+}
+
+.l-link2 {
+	text-decoration: underline;
+	color: white;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.l-layout-top {
+	background: #102A49;
+	color: White;
+}
+
+.l-layout-bottom {
+	background: #E5EDEF;
+	text-align: center;
+}
+
+.l-link {
+	display: block;
+	line-height: 22px;
+	height: 22px;
+	padding-left: 16px;
+	border: 1px solid white;
+	margin: 4px;
+}
+
+.l-link-over {
+	background: #FFEEAC;
+	border: 1px solid #DB9F00;
+}
+
+.l-winbar {
+	background: #2B5A76;
+	height: 30px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	z-index: 99999;
+}
+
+.space {
+	color: #E7E7E7;
+}
+
+/* 顶部 */
+.l-topmenu {
+	margin: 0;
+	padding: 0;
+	height: 59px;
+	line-height: 58px;
+	background: url('../images/bg_head.gif') repeat-x 0 0;
+	border-bottom: 1px solid transparent;
+	position: relative;
+}
+
+.topmask {
+	height: 58px;
+	background: transparent;
+	border-top: 1px solid #eee;
+}
+
+.l-topmenu-logo {
+	color: #646464;
+	padding-left: 35px;
+	height: 100%;
+	background: url('../images/index_logo.png') no-repeat 10px center;
+}
+
+.l-topmenu-logo .h2 {
+	color: #333;
+	text-shadow: 4px 3px 5px #b7b7b7;
+}
+
+.l-topmenu-logo .sysname {
+	float: left;
+	margin: 0 10px 0 160px;
+}
+
+.sysname span {
+	font-size: 18px;
+	vertical-align: middle;
+}
+
+.sysname span.spliter {
+	margin: 0 5px 0 12px;
+}
+
+.spliter img {
+	vertical-align: text-bottom;
+}
+
+.l-topmenu-welcome {
+	position: absolute;
+	right: 30px;
+	top: 2px;
+	color: #070A0C;
+}
+
+.l-topmenu-welcome a {
+	color: #333;
+	text-decoration: none;
+}
+
+.l-topmenu-welcome a:hover {
+	color: #1a1a1a;
+}
+
+.l-topmenu-welcome a.icn_help {
+	background: url('../ligerUI/skins/icons/help.png') no-repeat 0 center;
+	padding-left: 20px;
+}
+
+.body-gray2014 #framecenter {
+	margin-top: 3px;
+}
+
+.l-topmenu-welcome {
+	color: #999;
+}
+
+.wel_links {
+	margin-left: 20px;
+}
+
+.l-tree {
+	background: transparent;
+}
+
+.l-tree .l-over span {
+	text-decoration: none;
+}
+
+.l-tree li .l-body {
+	font-size: 13px;
+}
+
+.l-tree li .l-body.l-selected span {
+	padding: 0;
+	line-height: 21px;
+	background: none;
+	border-width: 0;
+}
+
+.l-tree li .l-children .l-body {
+	font-size: 12px;
+}
+
+.l-tree li .l-children .l-body.l-selected span {
+	padding: 0 10px 0 2px;
+	background: #D9E8FB;
+	border: 1px solid #B5CBEC;
+}
+
+.l-bottom {
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+}
+
+.l-bottom #clock {
+	position: absolute;
+	left: 0;
+	width: 190px;
+}
+
+.l-layout-content#framecenter {
+	margin: 0;
+	padding-top: 3px;
+	background: teal;
+}
+
+.l-tab-links li {
+	background: #e0e0e0;
+}
+
+.l-tab-links li.l-selected {
+	border-bottom: 1px solid #fff;
+}
+/*--  --*/
+.icn_home {
+	padding-left: 18px;
+	background: url(../images/icn_home_light.png) no-repeat 0 -2px;
+}
+
+.l-selected .icn_home {
+	background-image: url(../images/icn_home_gray.png);
+}
+
+/*-- Home Page(such as one page named 'welcome.html', 'main.html' and so on.) Styles --*/
+/*-- hd --*/
+.hd {
+	padding: 16px 18px;
+	font-size: 12px;
+}
+
+.hd img {
+	margin: 0 5px;
+	vertical-align: bottom;
+}
+
+.hd .welcome a {
+	color: #4e84c8;
+}
+/*bd*/
+.col-main {
+	float: left;
+	width: 100%;
+}
+
+.col-extra {
+	float: left;
+	width: 290px;
+	margin-left: -290px;
+}
+
+/*col-main*/
+.main-wrap {
+	margin: 0 300px 0 18px;
+	border: 1px solid #d4d4d4;
+	background: #FFF;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11);
+}
+
+.m-top {
+	padding: 33px 25px;
+	font-size: 14px;
+}
+
+.storages-search label {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+.storages-search .ui-search {
+	margin-right: 10px;
+}
+
+.storages-search .ui-input {
+	width: 260px;
+	padding: 6px 5px;
+}
+
+#result {
+	float: left;
+}
+
+.storages-search .loading {
+	background: url(img/indicator.gif) 0 0 no-repeat;
+}
+
+.quick-links {
+	border-top: 1px dashed #ccc;
+	overflow: hidden;
+	zoom: 1;
+}
+
+.quick-links li {
+	float: left;
+	height: 165px;
+	width: 25%;
+	*width: 24.99%;
+	text-align: center;
+}
+
+.quick-links li a {
+	position: relative;
+	display: block;
+	height: 120px;
+	overflow: hidden;
+	margin: -1px 0 0 -1px;
+	padding-top: 45px;
+	color: #666;
+	border-top: 1px dashed #ccc;
+	border-left: 1px dashed #ccc;
+	font-size: 14px;
+}
+
+.quick-links li a:hover {
+	background: #f8f8f8;
+	color: #333;
+}
+
+.quick-links span {
+	background-image: url(../images/home_icons_gray.png);
+	background-position: -50px 0;
+}
+
+.quick-links span {
+	display: block;
+	width: 48px;
+	height: 48px;
+	margin: 0 auto 20px;
+}
+
+.quick-links .purchase-purchase span {
+	background-position: 0 0;
+}
+
+.quick-links .sales-sales span {
+	background-position: 0 -48px;
+}
+
+.quick-links .storage-transfers span {
+	background-position: 0 -96px;
+}
+
+.quick-links .storage-inventory span {
+	background-position: 0 -144px;
+}
+
+.storage-otherWarehouse span {
+	background-position: -48px 0;
+}
+
+.storage-otherOutbound span {
+	background-position: -48px -48px;
+}
+
+.added-service span {
+	background-position: -48px -96px;
+}
+
+.feedback span {
+	background-position: -48px -144px;
+}
+
+.notices {
+	padding: 0 5px 0 20px;
+	width: 245px;
+	height: 25px;
+	background: #fff url('img/notice_bg.png') no-repeat;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+	position: relative;
+	margin-top: -5px;
+	overflow: hidden;
+}
+
+.notices li {
+	height: 25px;
+	line-height: 23px;
+}
+
+.notices li i {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	margin-right: 5px;
+	width: 16px;
+	height: 16px;
+	background: url(img/horn.png) 0 2px no-repeat;
+	vertical-align: text-bottom;
+}
+
+.notices li a {
+	display: block;
+	color: #f74c23;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 12px;
+}
+
+/*col-extra*/
+.extra-wrap {
+	margin-right: 18px;
+	font-size: 14px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11);
+}
+
+.extra-wrap h2 {
+	font-size: 14px;
+	text-align: center;
+	line-height: 36px;
+	border: 1px solid rgb(53, 154, 151);
+	color: #FFF;
+	background: teal;
+}
+
+.extra-wrap .list {
+	height: 395px;
+	border: 1px solid #d4d4d4;
+	border-top: none;
+	background: #FFF;
+	position: relative;
+}
+
+.extra-wrap ul li {
+	padding: 0 12px;
+	overflow: hidden;
+	zoom: 1;
+	line-height: 42px;
+	border-bottom: 1px dashed #cccccc;
+}
+
+/*radio*/
+#newbieRadio {
+	font-size: 12px;
+	color: #555;
+	margin-left: 15px;
+	padding-left: 22px;
+}
+
+/*个人信息*/
+.l-topmenu-welcome.fix_profile {
+	right: 121px;
+	height: 149px;
+}
+
+.l-topmenu-welcome.fix_profile:HOVER, .profileHover {
+	background: #f0f1f4;
+	cursor: pointer;
+}
+
+.fix_profile lable, .fix_profile ul {
+	position: absolute;
+}
+
+.fix_profile ul {
+	width: 100%;
+	z-index: 999;
+	top: 56px;
+	right: -1px;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ccc;
+	background: #f0f1f4;
+}
+
+.fix_profile ul li {
+	line-height: 30px;
+	padding: 0 5px;
+	border-top: 1px solid #e0e0e0;
+}
+
+.fix_profile ul li.fir {
+	border-width: 0;
+}
+
+.fix_profile ul li a {
+	padding-right: 15px;
+	background: url(../images/aero.png) no-repeat center right;
+}
+
+.fix_profile ul li a:hover {
+	color: #1a1a1a;
+	background: url(../images/icn_gt_gray.gif) no-repeat center right;
+}
+
+.fix_profile ul li a .icon {
+	padding: 0 10px;
+	margin: 0 5px;
+	background: url(..//jquery-ui/images/ui-icons_222222_256x240.png)
+		no-repeat -40px 0;
+}
+
+.fix_profile ul li a.myaccount .icon {
+	background-position: -144px -96px;
+}
+
+.fix_profile ul li a.modifypwd .icon {
+	background-position: -64px -112px;
+}
+
+.fix_profile ul li a.logout .icon {
+	background-position: 0px -175px;
+}
+
+.fix_profile .wel_label {
+	padding: 0 5px;
+}
+
+.t_profile a {
+	cursor: pointer;
+}
+
+.caret {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	margin-left: 2px;
+	vertical-align: middle;
+	border-top: 4px solid;
+	border-right: 4px solid transparent;
+	border-left: 4px solid transparent;
+}

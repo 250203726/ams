@@ -1,0 +1,43 @@
+﻿package com.ams.assetmanage.assetnam.dao;
+
+import java.util.List;
+
+import com.ams.company.entity.Company;
+import com.ams.company.model.CompanyModel;
+import com.ams.assetmanage.assetnam.entity.Assetnam;
+import com.ams.assetmanage.assetnam.model.AssetnamModel;
+import com.core.dao.BaseDao;
+import com.util.page.Pager;
+
+/**
+ * 资产名称信息管理
+ * @author 
+ * @Data 
+ *
+ */
+public interface AssetnamDao extends BaseDao<Assetnam>{
+
+	/**
+	 * 条件查询
+	 * @param model
+	 * @param page
+	 * @return
+	 */
+	List<Assetnam> findByCondition(Assetnam model, Pager page);
+
+	/**
+	 * 检查当前资产名称信息是否存在
+	 * @param name
+	 * @param id
+	 * @return
+	 */
+	List<Assetnam> checkAssetnam(String name, String id);
+	
+	/**
+	 * 根据名称获取资产名称信息
+	 * @param name
+	 * @return
+	 */
+	Assetnam getByName(String name);
+
+}

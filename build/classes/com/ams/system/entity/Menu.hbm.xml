@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-1-8 9:31:17 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.ams.system.entity.Menu" table="t_menu" >
+        <id name="menuId" type="string">
+            <column name="menuId" length="32" />
+            <generator class="assigned" />
+        </id>
+        <version name="version" type="java.lang.Long">
+            <column name="version">
+                <comment>版本号</comment>
+            </column>
+        </version>
+        <property name="parentId" type="string">
+            <column name="parentId" length="32" not-null="true">
+                <comment>父亲节点</comment>
+            </column>
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="25" not-null="true">
+                <comment>中文名称</comment>
+            </column>
+        </property>
+        <property name="code" type="string">
+            <column name="code" length="25">
+                <comment>简码</comment>
+            </column>
+        </property>
+        <property name="url" type="string">
+            <column name="url" length="200">
+                <comment>请求url</comment>
+            </column>
+        </property>
+        <property name="params" type="string">
+            <column name="params" length="200">
+                <comment>参数</comment>
+            </column>
+        </property>        
+        <property name="icon" type="string">
+            <column name="icon" length="50">
+                <comment>菜单图标</comment>
+            </column>
+        </property>
+        <property name="levels" type="int">
+            <column name="levels">
+                <comment>菜单层级</comment>
+            </column>
+        </property>
+        <property name="sortCode" type="int">
+            <column name="sortCode">
+                <comment>顺序</comment>
+            </column>
+        </property>
+        <property name="moduleId" type="string">
+            <column name="moduleId" length="32">
+                <comment>模块编码</comment>
+            </column>
+        </property>
+        <property name="enable" type="string">
+            <column name="enable" length="11">
+                <comment>是否可用</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

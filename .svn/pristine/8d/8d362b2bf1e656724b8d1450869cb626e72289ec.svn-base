@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-12 18:02:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.ams.company.entity.Company" table="t_company" >
+        <id name="companyId" type="string">
+            <column name="company_Id" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="companyName" type="string">
+            <column name="company_Name" length="100" not-null="true">
+                <comment>单位名称</comment>
+            </column>
+        </property>
+        <property name="companyType" type="string">
+            <column name="company_Type" length="11" not-null="true">
+                <comment>单位分类: 分公司、内部单位、外部单位、设备供应商</comment>
+            </column>
+        </property>
+        <property name="person" type="string">
+            <column name="person" length="20">
+                <comment>联系人</comment>
+            </column>
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="20">
+                <comment>联系电话</comment>
+            </column>
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="100">
+                <comment>地址</comment>
+            </column>
+        </property>
+        <property name="remark" type="string">
+            <column name="remark" length="1024">
+                <comment>备注</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

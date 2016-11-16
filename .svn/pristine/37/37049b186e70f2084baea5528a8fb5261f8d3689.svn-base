@@ -1,0 +1,64 @@
+############## mysql JDBC ######################################
+connection.driver_class=com.mysql.jdbc.Driver
+
+connection.url=jdbc:mysql://127.0.0.1:3306/ams_db?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8
+
+############## oracle JDBC #####################################
+#connection.driver_class=oracle.jdbc.driver.OracleDriver
+#connection.url=jdbc:oracle:thin:@localhost:1521:community
+
+############## SQL Server JDBC #####################################
+#connection.driver_class=com.microsoft.jdbc.sqlserver.SQLServerDriver
+#connection.url=jdbc:microsoft:sqlserver://localhost:1433;databaseName=cmmunity
+
+############## userName and password ###########################
+connection.username=root
+connection.password=
+
+############## hibernate properties ############################
+#hibernate.temp.use_jdbc_metadata_defaults=false
+#hibernate方言 
+hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+#hibernate使用本地事物
+hibernate.current_session_context_class=org.springframework.orm.hibernate4.SpringSessionContext
+#开启hibernate缓存技术
+hibernate.cache.region.factory_class=org.hibernate.cache.EhCacheRegionFactory
+#输出所有SQL语句到控制台
+hibernate.show_sql=true
+#在log和console中打印出更漂亮的SQL
+hibernate.format_sql=true
+#数据库断开后，自动重连
+hibernate.autoReconnect=true
+
+#加载hibernate自动更新数据库结构,none,update,validate,create,create-drop 
+hibernate.hbm2ddl.auto=update
+
+############## C3P0 Connection Proxool ###########################
+
+#最小连接数
+proxool.minimum.size=5
+#连接池中保留的最大连接数。Default: 15
+proxool.maximum.size=20
+#初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3
+proxool.initial.size=10
+#最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0
+proxool.maxIdle.time=60
+#当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3
+proxool.acquire.increment=2
+#JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。
+#但由于预缓存的statements属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。
+#如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0
+proxool.max.statement=100
+#每60秒检查所有连接池中的空闲连接。Default: 0
+proxool.test.period=3000
+#定义在从数据库获取新连接失败后重复尝试的次数。Default: 30
+proxool.retry.attempts=20
+#获取连接失败将会引起所有等待连接池来获取连接的线程抛出异常。
+#但是数据源仍有效保留，并在下次调用getConnection()的时候继续尝试获取连接。
+#如果设为true，那么在尝试获取连接失败后该数据源将申明已断开并永久关闭。Default: false
+proxool.acquire.failure=true
+#因性能消耗大请只在需要的时候使用它。如果设为true那么在每个connection提交的 时候都将校验其有效性。
+#建议使用idleConnectionTestPeriod或automaticTestTable等方法来提升连接测试的性能。Default: false
+proxool.validate=false
+
+

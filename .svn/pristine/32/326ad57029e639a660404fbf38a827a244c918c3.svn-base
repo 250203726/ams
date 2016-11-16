@@ -1,0 +1,2 @@
+1.运行环境windows，注意操作系统位数
+2.下载jacob，将jacob-1.14.3-x86.dll放在当前jdk中bin目录下。

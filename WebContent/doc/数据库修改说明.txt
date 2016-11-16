@@ -1,0 +1,16 @@
+v_contract：合同视图
+v_contract_division：切块合同视图
+v_contract_division_ref：切块合同关联视图
+v_fund：资金视图
+v_gongdan：工单关联查询
+v_process：工程进度关联视图
+v_tj_bfje：执行金额汇总视图
+v_tj_bzgc：包装工程统计视图
+v_tj_qkyy：切块盈余统计视图
+v_tj_rwdjtz：任务登记台账统计
+v_zbjyj：质保金预警
+v_g_subcontract：分包合同分组
+v_sumfund:收付款合计
+
+--修改时间2015-12-29
+增加视图：v_gsfund，公司拨款金额

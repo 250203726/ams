@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-5-4 13:23:39 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.ams.system.entity.User" table="t_user">
+        <id name="userId" type="string">
+            <column name="user_id" length="32"/>
+            <generator class="assigned" />
+        </id>
+        <property name="userName" type="string">
+            <column name="userName" length="50" not-null="true">
+                <comment>账号</comment>
+            </column>
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="50" not-null="true">
+                <comment>密码</comment>
+            </column>
+        </property>
+        <property name="realName" type="string">
+            <column name="realName" length="50" >
+                <comment>真实姓名</comment>
+            </column>
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" >
+                <comment>电话</comment>
+            </column>
+        </property>
+        <property name="enable" type="string">
+            <column name="enable" length="11" >
+                <comment>是否启用</comment>
+            </column>
+        </property>
+        <property name="departId" type="string">
+            <column name="departId" length="32" >
+                <comment>部门编号</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

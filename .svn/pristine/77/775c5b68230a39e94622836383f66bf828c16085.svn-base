@@ -1,0 +1,173 @@
+﻿@charset "utf-8";
+/*-- Css Document for Index Layout Style, by Jack --*/
+
+body{padding: 10px 20px; background: #f5f5f5; font-size: 12px;}
+html>body{font-size: 12px;}
+/*-- icons in a page --*/
+.icn_work{
+	display: inline-block;
+    margin: 0 auto;
+	width: 25px;
+	height: 25px;
+    vertical-align: middle;
+	background: url(../images/icn_work.png); 
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+
+.icn_warning{background-position: 0 -23px;}
+
+.icn_query{background-position: 0 -46px;}
+
+.icn_success{background-position: 0 -69px;}
+
+.icn_info{background-position: 0 -100px;}
+
+.icn_edit{background-position: 0 -130px;}
+.icn_editgray{background-position: -22px -129px;}
+
+.icn_trash{background-position: 0 -158px;}
+
+.icn_add{background-position: 0 -180px;}
+
+.icn_copy{background-position: 0 -202px;}
+
+.icn_list{background-position: 0 -202px;}
+
+.icn_detail{background-position: 0 -250px;}
+
+/*-- icons in a page end --*/
+
+/*--  --*/
+.msgNormal{
+    background: url(../images/validate_normal.gif) no-repeat 0 1px;
+    padding-left: 25px;
+    color: #999;
+}
+
+.msgAlert{
+    background: url(../images/icn_warning.png) no-repeat;
+    background-position: 0 1px;
+    margin: 0 0 0 1%;
+    padding-left: 20px;
+    color: #e40;
+}
+
+.act_btn,
+.act_info,
+.act_edit,
+.act_trash{
+    display: inline-block;
+    padding: 2px 5px 2px 24px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-position: 5px center;
+    }
+
+a.act_up,
+a.act_down{
+    display: inline-block;
+    width: 12px;
+    height: 16px;
+    text-align: center;
+    font-family: Calibri Sans-Serif;
+    color: steelblue;
+    font-weight: bolder;    
+    }
+    
+.act_info{background-image: url(../images/icn_info.png);}
+    
+.act_edit{background-image: url(../images/icn_edit.png);}
+
+.act_trash{background-image: url(../images/icn_trash.png);}
+    
+.act_btn:hover,    
+a.act_info:hover,
+a.act_edit:hover,
+a.act_trash:hover{text-decoration: none; background-color: #DDD;}
+
+.eval_text{padding: 2px 5px;display: inline-block;}
+    
+a.act_up:hover,
+a.act_down:hover{text-decoration: none; background-color: #C0C0C0;}
+
+a.act_up.aspNetDisabled,
+a.act_down.aspNetDisabled,
+a.act_up.aspNetDisabled:hover,
+a.act_down.aspNetDisabled:hover{color: #dedede; background: none;}
+
+    
+td input[type=text].filed_main{font-weight: bold;}
+
+/*-- wrap-box --*/
+.wrap-title h1 {
+    color: #393939;
+    font-family: "楷体";
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.wrap-title hr{
+    margin: 5px auto 0 auto;
+    border: 0;
+    border-top: 1px solid #dadada;
+    border-bottom: 1px solid #fff;
+}
+.wrap-box{
+    background: #F9F9F9;
+    border: 1px solid #CDCDCD;
+    clear: both;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.wrap-box .l-caption{text-align: left;background: #efefef; height: 28px; line-height: 28px; border-bottom: 1px solid #ccc;}
+.wrap-box .l-caption .icon{position: absolute; top: 0; left: 0; display: block; width: 30px; text-align: center; border-right: 1px solid #ccc;}
+.wrap-box .l-caption .icon .icn_work{ margin: 2px;}
+.wrap-box .l-caption h4{margin-left: 35px; padding: 0 10px; color: #666; font-size: 13px;}
+.wrap-box .wrap-inner {}
+    
+.l-label{
+    width: 150px;
+    color: #555;
+    font-weight: bold;
+    text-align: right;
+    white-space: nowrap;
+    padding-right: 2em;
+}
+
+.l-label td input[type="text"], .l-label td select {
+    width: 80%;
+}
+/*-- wrap-box end --*/
+/*-- l-table --*/
+.l-table{ width: 100%;}
+.l-table>tr>td,
+.l-table>tbody>tr>td {
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.l-table td.toolbottom {
+    padding: 20px 0;
+    border-top: 1px solid #e5e5e5;
+    border-bottom-width: 0;
+}
+
+.l-table td.toolbottom button,
+.l-table td.toolbottom input[type='button'],
+.l-table td.toolbottom input[type='submit'],
+.l-table td.toolbottom input[type='reset'] {
+    margin-right: 10px;
+}
+
+.label-forcheck{margin-right: 10px;cursor: pointer; vertical-align: -1px; *vertical-align:middle;*margin-bottom:-4px; /* IE6、IE7支持 */}
+
+/*-- l-table end --*/
+
+/*-- search-wrap --*/
+.search-wrap{padding: 10px;}
+.search-wrap dl {display: block; height: 100%;}
+.search-wrap dd { line-height: 30px;}
+.search-wrap label{font-weight: bold;}
+/*-- search-wrap end --*/

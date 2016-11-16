@@ -1,0 +1,125 @@
+package com.ams.assetmanage.assetnam.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Service;
+
+import com.ams.assetmanage.assetnam.dao.AssetnamDao;
+import com.ams.assetmanage.assetnam.entity.Assetnam;
+import com.ams.assetmanage.assetnam.service.AssetnamService;
+import com.util.generator.IdGenerator;
+import com.util.page.Pager;
+
+/**
+ * 资产名称管理
+ * 
+ * @author 
+ * @Data 
+ * 
+ */
+@Service
+public class AssetnamServiceImpl implements AssetnamService {
+
+	@Resource
+	private AssetnamDao assetnamDao;
+
+	/**
+	 * 保存名称
+	 * 
+	 * @param model
+	 * @return
+	 */
+	public Assetnam save(Assetnam assetnam) {
+		if (null != assetnam) {
+			assetnam.setassetnameId(IdGenerator.getInstance().getId());
+			assetnamDao.save(assetnam);
+		}
+		return assetnam;
+	}
+
+	/**
+	 * 修改名称
+	 * 
+	 * @param model
+	 * @return
+	 */
+	public Assetnam update(Assetnam model) {
+		if (null != model && StringUtils.isNotEmpty(model.getassetnameId())) {
+			Assetnam assetnam = assetnamDao.get(model.getassetnameId());
+			if (null != assetnam) {
+				assetnam.setassetnameId(model.getassetnameId());
+				assetnam.setassetName(model.getassetName());
+				assetnam.setassetType(model.getassetType());
+				assetnamDao.update(assetnam);
+				return assetnam;
+			}
+		}
+		return model;
+	}
+
+	/**
+	 * 删除资产名称信息
+	 * 
+	 * @param id
+	 */
+	public void delete(String id) {
+		if (StringUtils.isNotEmpty(id)) {
+			Assetnam assetnam = assetnamDao.get(id);
+			assetnamDao.delete(assetnam);
+		}
+	}
+
+	/**
+	 * 根据id查找资产名称信息
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Assetnam getById(String id) {
+		if (StringUtils.isNotEmpty(id)) {
+			Assetnam assetnam = assetnamDao.get(id);
+			return assetnam;
+		}
+		return null;
+	}
+
+	/**
+	 * 条件查询
+	 * 
+	 * @param model
+	 * @param page
+	 * @return
+	 */
+	public List<Assetnam> findByCondition(Assetnam model, Pager page) {
+		return assetnamDao.findByCondition(model, page);
+	}
+
+	/**
+	 * 检查当前资产名称是否存在
+	 * 
+	 * @param name
+	 * @param id
+	 * @return
+	 */
+	public boolean checkAssetnam(String name, String id) {
+		List<Assetnam> list = assetnamDao.checkAssetnam(name, id);
+		if (!list.isEmpty() && list.size() > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 根据资产名获取资产名称信息
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public Assetnam getByName(String name) {
+		return assetnamDao.getByName(name);
+	}
+
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-12 18:02:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+ <class name="com.ams.assetmanage.assetcla.entity.Assetcla" table="t_assettype">
+  <id name="assettypeid" type="string">
+   <column length="32" name="assettypeid"/>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="assettypename" type="string">
+   <column length="100" name="assettypename" not-null="true">
+    <comment>资产类别名称</comment>
+   </column>
+  </property>
+ </class>
+</hibernate-mapping>

@@ -1,0 +1,187 @@
+package com.ams.infomanage.project.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ams.company.entity.Company;
+import com.ams.company.model.CompanyModel;
+import com.ams.company.service.CompanyService;
+import com.ams.customer.service.CustomerService;
+import com.ams.infomanage.project.entity.Project;
+import com.ams.infomanage.project.model.ProjectModel;
+import com.ams.infomanage.project.service.ProjectService;
+import com.core.action.BaseAction;
+import com.core.model.OutputMessage;
+import com.util.enums.PageSizeEnum;
+import com.util.json.JackJsonUtils;
+import com.util.page.Pager;
+import com.util.page.PagerHelper;
+
+/**
+ * 	项目Action
+ *	@author simon
+ */
+@Controller
+public class ProjectAction extends BaseAction{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9043863563506939011L;
+	@Resource
+	private ProjectService projectService;
+	
+	/**
+	 * 跳转到新建页面
+	 * @return
+	 */
+	@RequestMapping(value="/infomanage/project/add")
+	public String add(){
+		return PROJECT+"edit";
+	}
+	
+	/**
+	 * 保存
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/infomanage/project/save",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String save(Project model){
+		OutputMessage msg=new OutputMessage();
+		if(null!=model){
+			if(StringUtils.isNotEmpty(model.getProjectId())){//修改
+				Project project=projectService.getById(model.getProjectId());
+				if(null!=project){
+					projectService.update(model);
+					msg=setOutputMessage(true, "修改成功！", model.getProjectId());
+				}else{
+					msg=setOutputMessage(false, "该项目已经被删除！", model.getProjectId());
+				}
+			}else{//保存
+				if(checkCompany(model.getProjectName(),null).equals("false")){//如果客户不存在
+					projectService.save(model);
+					msg=setOutputMessage(true, "新建成功！", model.getProjectId());
+				}else{
+					msg=setOutputMessage(false, "项目名已存在！", model.getProjectId());
+				}
+				
+			}
+		}else{
+			msg=setOutputMessage(false, "数据为空", null);
+		}
+		return JackJsonUtils.toJSon(msg);
+	}
+
+	/**
+	 * 跳转到编辑页面
+	 * @return
+	 */
+	@RequestMapping(value="/infomanage/project/edit")
+	public String edit(String id,ModelMap map){
+		if(StringUtils.isNotEmpty(id)){
+			Project model=projectService.getById(id);
+			map.addAttribute("model", model);
+			return PROJECT+"edit";
+		}else{
+			this.returnException("项目编号不存在，不能编辑！");
+		}
+		return ERROR;
+		
+	}
+	
+	/**
+	 * 跳转到详细页面
+	 * @return
+	 */
+	@RequestMapping(value="/infomanage/project/detail")
+	public String detail(String id,ModelMap map){
+		if(StringUtils.isNotEmpty(id)){
+			Project model=projectService.getById(id);
+			map.addAttribute("model", model);
+			return PROJECT+"detail";
+		}else{
+			this.returnException("项目编号不存在，查看不了详细！");
+		}
+		return ERROR;
+	}
+	
+	/**
+	 * 物理删除项目信息
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/infomanage/project/delete",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String delete(String id){
+		OutputMessage msg=new OutputMessage();
+		if(StringUtils.isNotEmpty(id)){
+			projectService.delete(id);
+			msg=setOutputMessage(true, "操作成功！", id);
+		}else{
+			msg=setOutputMessage(false, "操作失败，项目编号为空！", id);
+		}
+		return JackJsonUtils.toJSon(msg);
+	}
+	
+	/**
+	 * 跳转到列表页面
+	 * @return
+	 */
+	@RequestMapping(value="/infomanage/project/toList")
+	public String toList(){
+		return PROJECT+"list";
+	}
+	
+	/**
+	 * 局部刷新翻页
+	 * @return
+	 */
+	@RequestMapping(value="/infomanage/project/list",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String list(Project model){
+		Pager page=PagerHelper.getInstance(this.getRequest(), PageSizeEnum.MIDDLE);
+		List<Project> list=projectService.findByCondition(model,page);
+		page.setRows(list);
+		return JackJsonUtils.toJSon(page);
+	}
+	
+	/**
+	 * 打开弹出框内容
+	 * @return
+	 */
+	@RequestMapping(value="/infomanage/project/toPopList")
+	public String toPopList(ProjectModel model,ModelMap map){
+		map.addAttribute("model", model);
+		return PROJECT+"projectPop";
+	}
+	
+	/**
+	 * 弹出框局部刷新
+	 */
+	@RequestMapping(value="/infomanage/project/popList",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String popList(Project model){
+		Pager page=PagerHelper.getInstance(this.getRequest(), PageSizeEnum.MIDDLE);
+		List<Project> list=projectService.findByCondition(model,page);
+		page.setRows(list);
+		return JackJsonUtils.toJSon(page);
+	}
+	
+	/**
+	 * 检查项目名是否存在
+	 * @param name
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/infomanage/project/checkProject",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String checkCompany(String name, String id) {
+		boolean flag=false;
+		flag=projectService.checkProject(name, id);
+		return String.valueOf(flag);
+	}
+	
+}

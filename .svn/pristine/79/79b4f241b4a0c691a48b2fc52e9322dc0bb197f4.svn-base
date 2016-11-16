@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-12 18:02:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.ams.infomanage.maintenanceinfo.entity.Maintenanceinfo" table="t_maintenanceinfo" >
+        <id name="maintenanceId" type="string">
+            <column name="maintenanceId" length="32" >
+            	<comment>维护公司编号</comment>
+            </column>
+            <generator class="assigned" />
+        </id>
+        <property name="maintenanceName" type="string">
+            <column name="maintenanceName" length="100">
+                <comment>维护公司名称</comment>
+            </column>
+        </property>
+        <property name="maintenanceContacts" type="string">
+            <column name="maintenanceContacts" length="100">
+                <comment>维护公司联系人</comment>
+            </column>
+        </property>
+        <property name="maintenanceContactsPhone" type="string">
+            <column name="maintenanceContactsPhone" length="11">
+                <comment> 维护公司联系人电话</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

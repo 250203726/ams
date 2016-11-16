@@ -1,0 +1,164 @@
+package com.ams.system.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ams.system.entity.Auth;
+import com.ams.system.entity.Role;
+import com.ams.system.model.RoleModel;
+import com.ams.system.service.AuthService;
+import com.ams.system.service.RoleService;
+import com.core.action.BaseAction;
+import com.core.model.OutputMessage;
+import com.util.enums.PageSizeEnum;
+import com.util.json.JackJsonUtils;
+import com.util.page.Pager;
+import com.util.page.PagerHelper;
+/**
+ * 角色管理
+ * @author Wymann
+ * @Date 2014-5-10 下午09:55:33
+ *
+ */
+@Controller
+@Scope("prototype")
+public class RoleAction extends BaseAction{
+
+	private static final long serialVersionUID = -4359576912385766868L;
+	
+	@Resource
+	private RoleService roleService;
+	
+	@Resource
+	private AuthService authService;
+	
+	/**
+	 * 保存
+	 * @param role
+	 * @param auth
+	 * @return
+	 */
+	@RequestMapping(value="/role/save",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String save(Role role ,String auth){
+		OutputMessage msg=new OutputMessage();
+		if(null!=role){
+			if(StringUtils.isNotEmpty(role.getRoleId())){//修改
+				Role model=roleService.getByRoleId(role.getRoleId());
+				if(null!=model){
+					roleService.update(role,auth);
+					msg=setOutputMessage(true, "修改成功！", role.getRoleId());
+				}else{
+					msg=setOutputMessage(false, "该角色已经被删除！", role.getRoleId());
+				}
+			}else{//新增
+				roleService.save(role,auth);
+				msg=setOutputMessage(true, "新建成功！", role.getRoleId());
+			}
+		}else{
+			msg=setOutputMessage(false, "角色信息不完整", "");
+		}
+		return JackJsonUtils.toJSon(msg);
+	}
+	
+	/**
+	 * 跳转到角色新增页面
+	 * @return
+	 */
+	@RequestMapping(value="/role/add")
+	public String toAdd(ModelMap map){
+		List<Auth> allAuth=authService.findAll();
+		map.addAttribute("allAuth", allAuth);
+		return SYSTEM+"roleEdit";
+	}
+	
+	/**
+	 * 编辑角色
+	 * @param id
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping(value="/role/edit")
+	public String toEdit(String id,ModelMap map){
+		if(StringUtils.isNotEmpty(id)){
+			Role role=roleService.getByRoleId(id);
+			List<Auth> authList=authService.getByRoleId(id);
+			String aList="";
+			for(Auth auth:authList){
+				aList+=auth.getAuthId()+",";
+			}
+			List<Auth> allAuth=authService.findAll();
+			map.addAttribute("role", role);
+			map.addAttribute("aList", aList);
+			map.addAttribute("allAuth", allAuth);
+			return SYSTEM+"roleEdit";
+		}else{
+			this.returnException("角色编码不存在，不能编辑！");
+		}
+		return ERROR;
+	}
+	
+	/**
+	 * 角色详细
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/role/detail")
+	public String detail(String id,ModelMap map){
+		if(StringUtils.isNotEmpty(id)){
+			Role role=roleService.getByRoleId(id);
+			List<Auth> authList=authService.getByRoleId(id);
+			map.addAttribute("role", role);
+			map.addAttribute("authList", authList);
+			return SYSTEM+"roleDetail";
+		}else{
+			this.returnException("角色编码不存在，查看不了详细！");
+		}
+		return ERROR;
+	}
+	
+	/**
+	 * 删除角色
+	 * @return
+	 */
+	@RequestMapping(value="/role/delete",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String delete(String id){
+		OutputMessage msg=new OutputMessage();
+		if(StringUtils.isNotEmpty(id)){
+			roleService.delete(id);
+			msg=setOutputMessage(true, "删除成功！", id);
+		}else{
+			msg=setOutputMessage(false, "删除失败，角色Id为空！", id);
+		}
+		return JackJsonUtils.toJSon(msg);
+	}
+	
+	/**
+	 * 跳转到角色列表
+	 * @return
+	 */
+	@RequestMapping(value="/role/toList")
+	public String toList(){
+		return SYSTEM+"roleList";
+	}
+	
+	/**
+	 * 跳转到角色列表
+	 * @return
+	 */
+	@RequestMapping(value="/role/list",produces="text/plain;charset=UTF-8")
+	public @ResponseBody String list(RoleModel model){
+		Pager page=PagerHelper.getInstance(this.getRequest(), PageSizeEnum.BIG);
+		List<Role> roleList=roleService.findByCondition(model,page);
+		page.setRows(roleList);
+		return JackJsonUtils.toJSon(page);
+	}
+
+}

@@ -1,0 +1,89 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: Arial, Helvetica, "songti", sans-serif;
+	font-size: 12pt; 
+	font-weight: normal;
+	background-color: #d0d0d0; 
+	color: black; 
+	margin: 0;
+	padding: 0;	
+}
+
+a:link,a:visited {
+	color: #3333CC;
+	text-decoration: underline; 
+	font-weight: bold; 
+}
+
+h1 {
+   color: black;
+}
+
+h2{
+   color: gray;
+}
+
+/*-- 设置宽度：100%，这种设置会填充页面上可以打印的部分。 --*/
+
+div.print-box#content{	
+	background-color: white; 
+	width: 100%;
+	margin: 0 auto; 
+}
+
+div.print-box .print-inner{	
+	font-family: "楷体";
+	background-color: white; 
+	padding: 10mm 10mm; 
+	height: 246mm;
+}
+
+div.print-box .print-inner-herizon{
+	background-color: white;
+	padding: 20mm 20mm; 
+}
+
+div.print-box#content table{
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+div.print-box#content table caption {
+	color: black;
+	font-family: "黑体";
+	font-size: 2em;
+	font-weight: 700;
+	padding: 0 0 10pt 0;
+}
+
+div.print-box#content table th.headtext, 
+div.print-box#content table td.headtext{
+	border-width: 0;
+	text-align: left;
+}
+
+div.print-box#content table tr td{
+	padding: 10px;
+	text-align: center;
+	border: 1px solid black;
+	height: 23px;
+}
+
+
+td.minwidth1{width: 25mm;}
+
+div.print-box#content table tr td p{margin: 0; padding: 0; line-height: 24px; text-indent: 2em;}
+
+div.print-box#content table tr.rows2 td{height: 100px;}
+
+div.print-box#content table tr.multiline td{height: 120px;}
+
+div.print-box#content table tr.multiline2 td{height: 150px;}
+
+th.nowrap, td.nowrap{white-space: nowrap;}
+.textleft, div.print-box#content table tr td.textleft{text-align: left;}
+.textcenter, div.print-box#content table tr td.textcenter{text-align: center;}
+.textright, div.print-box#content table tr td.textright{text-align: right;}
+
