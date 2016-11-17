@@ -70,6 +70,11 @@ public class ExcelHelperTest {
 		}
 	}
 	
+	/***
+	 * 导出到excel
+	 * @author simon
+	 * @date 2016年11月17日 上午11:06:23
+	 */
 	public void excelHelperExportTest() {
 		List<AgentSalesDetail> agentSalesDetails = new ArrayList<AgentSalesDetail>();
 		for (int i = 0; i < 20; i++) {
