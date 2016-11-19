@@ -269,7 +269,5 @@ public class AssetinfAction extends BaseAction {
 			msg = setOutputMessage(false, "操作失败！", excelPath);
 		}
 		return JackJsonUtils.toJSon(msg);
-		
 	}
-
 }
