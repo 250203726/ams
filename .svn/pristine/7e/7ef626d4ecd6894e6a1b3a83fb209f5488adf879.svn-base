@@ -84,8 +84,6 @@
 			var params=$("#searchForm").serialize();
 			parent.Public.ajaxPost("${path}/assetmanage/assetinf/excel?"+params,"",function(data){
 				data=eval(data);
-				//弹出下载框
-				window.open(data.param);
 		   		parent.Public.tips({type: 0, content : data.message});
 			});
 		}

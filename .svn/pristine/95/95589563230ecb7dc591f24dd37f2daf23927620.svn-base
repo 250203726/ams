@@ -262,20 +262,28 @@ public class AssetinfAction extends BaseAction {
 	@RequestMapping(value="/assetmanage/assetinf/excel" , produces = "text/plain;charset=UTF-8")
 	public @ResponseBody String excel(AssetinfModel model){
 		OutputMessage msg = new OutputMessage();
-		//根据查询条件获取数据源
+/*		//根据查询条件获取数据源
 		List<AssetinfModel> list = assetinfService.findModelByCondition(model,null);
+		//xls文件路径
+		String xlsPath = request.getSession().getServletContext().getRealPath("xls");
 		//物理路径
-		String filePath=request.getSession().getServletContext().getRealPath("xls")+System.getProperties().getProperty("file.separator")+"assetinfo.xls";
-		//web路径
-		String webPath=getBasePath()+System.getProperties().getProperty("file.separator")+"xls"+System.getProperties().getProperty("file.separator")+"assetinfo.xls";
+		String filePath=xlsPath+System.getProperties().getProperty("file.separator")+"assetinfo.xls";
+		//String rootPathString=getBasePath();
 		//生成excel
 		String excelPath=assetinfService.exportExcel(list,filePath);
 		if(excelPath!=null){
 			//DownloadHelper.download(filePath,response);
-			msg = setOutputMessage(true, "操作成功！", webPath);
+			msg = setOutputMessage(true, "操作成功！", excelPath);
 		}else {
-			msg = setOutputMessage(false, "操作失败！", webPath);
-		}
+			msg = setOutputMessage(false, "操作失败！", excelPath);
+		}*/
+		//xls文件路径
+		String xlsPath = request.getSession().getServletContext().getRealPath("xls");
+		//物理路径
+		String filePath=xlsPath+System.getProperties().getProperty("file.separator")+"assetinfo.xls";
+			DownloadHelper.download(filePath,response);
+			msg = setOutputMessage(true, "操作成功！", filePath);
+		
 		return JackJsonUtils.toJSon(msg);
 	}
 }

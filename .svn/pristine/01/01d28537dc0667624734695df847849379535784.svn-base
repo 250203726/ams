@@ -208,7 +208,7 @@ public class AssetinfAction extends BaseAction {
 	@RequestMapping(value = "/assetmanage/assetinf/list", produces = "text/plain;charset=UTF-8")
 	public @ResponseBody
 	String list(AssetinfModel model) {
-		Pager page = PagerHelper.getInstance(this.request,
+		Pager page = PagerHelper.getInstance(this.getRequest(),
 				PageSizeEnum.MIDDLE);
 		List<AssetinfModel> list = assetinfService.findModelByCondition(model, page);
 		page.setRows(list);
@@ -232,7 +232,7 @@ public class AssetinfAction extends BaseAction {
 	@RequestMapping(value = "/assetmanage/assetinf/popList", produces = "text/plain;charset=UTF-8")
 	public @ResponseBody
 	String popList(Assetinf model) {
-		Pager page = PagerHelper.getInstance(this.request,
+		Pager page = PagerHelper.getInstance(this.getRequest(),
 				PageSizeEnum.MIDDLE);
 		List<Assetinf> list = assetinfService.findByCondition(model, page);
 		page.setRows(list);
@@ -264,17 +264,16 @@ public class AssetinfAction extends BaseAction {
 		OutputMessage msg = new OutputMessage();
 		//根据查询条件获取数据源
 		List<AssetinfModel> list = assetinfService.findModelByCondition(model,null);
-		//物理路径
-		String filePath=request.getSession().getServletContext().getRealPath("xls")+System.getProperties().getProperty("file.separator")+"assetinfo.xls";
-		//web路径
-		String webPath=getBasePath()+System.getProperties().getProperty("file.separator")+"xls"+System.getProperties().getProperty("file.separator")+"assetinfo.xls";
+		//xls文件路径
+		String xlsPath = getRequest().getSession().getServletContext().getRealPath("xls");
+		String filePath=xlsPath+System.getProperties().getProperty("file.separator")+"assetinfo.xls";
 		//生成excel
 		String excelPath=assetinfService.exportExcel(list,filePath);
 		if(excelPath!=null){
-			//DownloadHelper.download(filePath,response);
-			msg = setOutputMessage(true, "操作成功！", webPath);
+			msg = setOutputMessage(true, "操作成功！", excelPath);
+			//DownloadHelper.download(filePath,);
 		}else {
-			msg = setOutputMessage(false, "操作失败！", webPath);
+			msg = setOutputMessage(false, "操作失败！", excelPath);
 		}
 		return JackJsonUtils.toJSon(msg);
 	}

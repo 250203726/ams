@@ -111,30 +111,30 @@ public class BaseAction implements Serializable {
 	 */
 	protected HttpServletRequest request;
 
-	/*protected HttpServletRequest getRequest() {
+	protected HttpServletRequest getRequest() {
 		return this.request;
 	}
 
 	@Resource
 	protected void setRequest(HttpServletRequest request) {
 		this.request = request;
-	}*/
+	}
 	/********************** 获取Response *******************/
-	protected HttpServletResponse response;
+	/*protected HttpServletResponse response;
 
-	/*public HttpServletResponse getResponse() {
+	public HttpServletResponse getResponse() {
 		return response;
 	}
 	@Resource
 	public void setResponse(HttpServletResponse response) {
 		this.response = response;
-	}*/
+	}
 
 	@ModelAttribute
     public void setReqAndRes(HttpServletRequest request, HttpServletResponse response){
         this.request = request;
         this.response = response;
-    }
+    }*/
 
 	/**
 	 * 将spring mvc 默认的ISO-8859-1转为utf-8
@@ -159,7 +159,7 @@ public class BaseAction implements Serializable {
 	 * @author Whymann 2013-12-8 上午10:53:56
 	 */
 	protected String getUrl() {
-		return request.getRequestURI();
+		return getRequest().getRequestURI();
 	}
 
 	/**
@@ -170,10 +170,10 @@ public class BaseAction implements Serializable {
 	 */
 	protected String getReferer() {
 		// 保存之前跳转到的页面
-		String refer = request.getHeader("referer");
+		String refer = getRequest().getHeader("referer");
 		// 项目服务器路径
-		String basePath = request.getScheme() + "://" + request.getServerName() + ":"
-				+ request.getServerPort() + request.getContextPath();
+		String basePath = getRequest().getScheme() + "://" + getRequest().getServerName() + ":"
+				+ getRequest().getServerPort() + getRequest().getContextPath();
 		if (StringUtils.isEmpty(refer)) {// 为空，保存历史记录为前台首页
 			refer = "";
 		} else {
@@ -189,7 +189,7 @@ public class BaseAction implements Serializable {
 	 * @return
 	 */
 	protected UserSession getSession() {
-		return (UserSession) this.request.getSession().getAttribute(BaseConst.USERSESSION);
+		return (UserSession) this.getRequest().getSession().getAttribute(BaseConst.USERSESSION);
 	}
 
 	/**
@@ -210,7 +210,7 @@ public class BaseAction implements Serializable {
 	 * @param msg
 	 */
 	protected void returnException(String msg) {
-		request.setAttribute("exception", msg);
+		getRequest().setAttribute("exception", msg);
 	}
 
 	/**
@@ -250,7 +250,7 @@ public class BaseAction implements Serializable {
 	 * 重写getPara，进行二次decode解码
 	 */
 	public String getPara(String name) {
-		String value = request.getParameter(name);
+		String value = getRequest().getParameter(name);
 		if (null != value && !value.isEmpty()) {
 			try {
 				value = URLDecoder.decode(value, ToolString.encoding);
