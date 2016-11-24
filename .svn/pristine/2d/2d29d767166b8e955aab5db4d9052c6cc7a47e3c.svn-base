@@ -1,0 +1,72 @@
+﻿.ico-file {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    margin: 3px 5px 0;
+    float: left;
+    position: relative;
+    z-index: 2;
+    background-image: url(img/ico-files.png);
+    background-position: 0 center
+}
+
+.ico-file-bmp {
+    background-position: -16px center
+}
+
+.ico-file-doc,.ico-file-docx {
+    background-position: -32px center
+}
+
+.ico-file-gif {
+    background-position: -48px center
+}
+
+.ico-file-ico {
+    background-position: -64px center
+}
+
+.ico-file-jpg,.ico-file-jpeg {
+    background-position: -80px center
+}
+
+.ico-file-png {
+    background-position: -96px center
+}
+
+.ico-file-ppt,.ico-file-pptx {
+    background-position: -112px center
+}
+
+.ico-file-rar,.ico-file-zip {
+    background-position: -128px center
+}
+
+.ico-file-raw {
+    background-position: -144px center
+}
+
+.ico-file-tif {
+    background-position: -160px center
+}
+
+.ico-file-txt {
+    background-position: -176px center
+}
+
+.ico-file-wmf {
+    background-position: -192px center
+}
+
+.ico-file-xls,.ico-file-xlsx {
+    background-position: -208px center
+}
+
+.ico-file-pdf {
+    background-position: -224px center
+}
+
+.ico-file-avi,.ico-file-mpg,.ico-file-mpeg,.ico-file-mov,.ico-file-wav,.ico-file-ram,.ico-file-mp3,.ico-file-mp4 {
+    background-position: -240px center
+}

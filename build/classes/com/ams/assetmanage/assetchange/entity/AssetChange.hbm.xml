@@ -52,9 +52,9 @@
 				<comment>资产状态</comment>
 			</column>
 		</property>
-		<property generated="never" lazy="false" name="asseAttach"
+		<property generated="never" lazy="false" name="assetAttach"
 			type="string">
-			<column length="50" name="asseAttach">
+			<column length="50" name="assetAttach">
 				<comment>资产附件</comment>
 			</column>
 		</property>
