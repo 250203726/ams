@@ -8,19 +8,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
 <meta name="robots" content="none" />
 <title>资产领用</title>
-<link href="${path}/resources/ligerUI/skins/Gray/css/ligerui-all.css"
-	rel="stylesheet" type="text/css">
-<link href="${path}/resources/css/main2.css" rel="stylesheet"
-	type="text/css" />
-<link href="${path}/resources/css/ui.css" rel="stylesheet"
-	type="text/css" />
-<link href="${path}/resources/css/base.css" rel="stylesheet"
-	type="text/css" />
+<link href="${path}/resources/ligerUI/skins/Gray/css/ligerui-all.css" rel="stylesheet" type="text/css">
+<link href="${path}/resources/css/main2.css" rel="stylesheet" type="text/css" />
+<link href="${path}/resources/css/ui.css" rel="stylesheet" type="text/css" />
+<link href="${path}/resources/css/base.css" rel="stylesheet" type="text/css" />
+<link href="${path}/resources/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
 <script src="${path}/resources/My97DatePicker/WdatePicker.js" language="javascript" type="text/javascript"></script>
-<script src="${path}/resources/js/jquery-1.7.2.min.js"
-	type="text/javascript"></script>
-<script src="${path}/resources/ligerUI/js/ligerui.all.js"
-	type="text/javascript"></script>
+<script src="${path}/resources/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="${path}/resources/ligerUI/js/ligerui.all.js" type="text/javascript"></script>
+<script src="${path}/resources/uploadify/jquery.uploadify.js" type="text/javascript"></script>
 <script type="text/javascript">
 	    $(document).ready(function(){
 			var oldParams=$("#sub_form").serialize();
@@ -58,6 +54,31 @@
 				$("#nowPrincipal").val("${USERSESSION.user.userName}"); */
 				$("#changeTmie").val("${now_time}");
 			}
+			
+			 $("#asseAttach").uploadify({
+                //指定swf文件
+                'swf': '${path}/resources/uploadify/uploadify.swf',
+                //后台处理的页面
+                'uploader': 'UploadHandler.ashx',
+                //按钮显示的文字
+                'buttonText': '上传图片',
+                //显示的高度和宽度，默认 height 30；width 120
+                //'height': 15,
+                //'width': 80,
+                //上传文件的类型  默认为所有文件    'All Files'  ;  '*.*'
+                //在浏览窗口底部的文件类型下拉菜单中显示的文本
+                'fileTypeDesc': 'Image Files',
+                //允许上传的文件后缀
+                'fileTypeExts': '*.gif; *.jpg; *.png',
+                //发送给后台的其他参数通过formData指定
+                //'formData': { 'someKey': 'someValue', 'someOtherKey': 1 },
+                //上传文件页面中，你想要用来作为文件队列的元素的id, 默认为false  自动生成,  不带#
+                //'queueID': 'fileQueue',
+                //选择文件后自动上传
+                'auto': true,
+                //设置为true将允许多文件上传
+                'multi': true
+            });
 		});
 		function saveNext(data){
 			data=eval(data);
@@ -82,31 +103,6 @@
 			}
 		}
 		
-		//该资产是否归还了，归还了才可以被领取。
-		/* function isBack(){
-			var assetId=$("#assetId").val();
-			var flag=true;
-			$.ajax({
-				type:"post",
-				async:false,
-				url:"${path}/assetmanage/assetchange/isBack",
-				data:{id:assetId},
-	    		dataType:'json',
-	    		contentType:"application/x-www-form-urlencoded; charset=utf-8",	
-	    		success:function(data){
-	    			if(data){
-	    				flag=true;
-	    			}else{
-						flag=false;
-						parent.Public.tips({type: 2, content : '该资产尚未归还，无法领用！'});
-	    			}
-	    		},
-	    		error:function(){
-	    			flag=false;
-	    		}
-			});
-			return flag;
-		} */
     </script>
 </head>
 <body>
@@ -167,9 +163,7 @@
 						<td>
 							<select name="nowDepartment">
 									<c:forEach items="${departList }" var="item">
-										<option
-											<c:if test="${ item.departId eq model.nowDepartment }">selected</c:if>
-											value="${item.departId }">${item.departName }</option>
+										<option <c:if test="${ item.departId eq model.nowDepartment }">selected</c:if> value="${item.departId }">${item.departName }</option>
 									</c:forEach>
 							</select> 
 							<%-- <input type="text" name="nowDepartment" id="nowDepartment" value="${model.nowDepartment}" /> --%>
@@ -178,9 +172,10 @@
 						<td>
 							<select name="nowPrincipal">
 									<c:forEach items="${userList }" var="item">
-										<option
-											<c:if test="${ item.userId eq model.nowPrincipal }">selected</c:if>
-											value="${item.userId }">${item.userName }</option>
+										<option 
+											<c:if test="${ item.userId eq model.nowPrincipal }">selected</c:if> 
+											value="${item.userId }">${ item.userName }
+										</option>
 									</c:forEach>
 							</select> 
 							<%-- <input type="text" name="nowPrincipal" id="nowPrincipal" value="${model.nowPrincipal}" /> --%>
@@ -203,8 +198,10 @@
 					</tr>
 					<tr>
 						<td class="label">资产附件：</td>
-						<td colspan=3><input type="text" name="asseAttach" id="asseAttach"
-							value="${model.asseAttach}" /></td>
+						<td colspan=3>
+							<c:if test="${empty model.aciId }">文件下载路径</c:if>
+							<input type="file" name="asseAttach" id="asseAttach" value="${model.asseAttach}" />
+						</td>
 					</tr>
 					<tr>
 						<td class="label">备注：</td>
