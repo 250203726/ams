@@ -13,7 +13,7 @@ public class AssetinfModel {
 	
 	private String assetId; // 主键
 	private String assetnameId; // 资产名称
-	private int assetserialCode; // 资产出厂编号
+	private String assetserialCode; // 资产序列号
 	private int projectNumber; // 所属项目编号
 	private String assetBrand; // 资产品牌
 	private String assetinfoVersion; // 资产型号
@@ -21,7 +21,8 @@ public class AssetinfModel {
 	private String assetinfoPic;//图片
 	private String assetStatus; // 资产状态
 	private String agentPurchaser; // 采购人
-	private String userId; // 使用者
+	private String userId; // 使用者Id
+	private String realName;//使用者
 	private Timestamp assetmadeTime; // 制造日期
 	private Timestamp assetinfoTime; // 购买日期
 	private Timestamp StartUseTime; // 启用日期
@@ -50,11 +51,11 @@ public class AssetinfModel {
 		this.assetnameId = assetnameId;
 	}
 
-	public int getassetserialCode() {
+	public String getassetserialCode() {
 		return this.assetserialCode;
 	}
 
-	public void setassetserialCode(int assetserialCode) {
+	public void setassetserialCode(String assetserialCode) {
 		this.assetserialCode = assetserialCode;
 	}
 
@@ -120,6 +121,14 @@ public class AssetinfModel {
 
 	public void setuserId(String userId) {
 		this.userId = userId;
+	}
+	
+	public String getrealName() {
+		return this.realName;
+	}
+
+	public void setrealName(String realName) {
+		this.realName = realName;
 	}
 	
 	public Timestamp getassetmadeTime() {

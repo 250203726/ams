@@ -45,8 +45,7 @@
 					parent.tab.removeSelectedTabItem();					
 				}
 			});
-			
-			if(!${empty model.purchaseapplicationId})//审批，就是原来的编辑，改的
+			if(!${empty model.purchaseapplicationId})
 			{
 				$("#userId").attr("disabled",true);
 				$("#approveOpinionTr").css("display","");

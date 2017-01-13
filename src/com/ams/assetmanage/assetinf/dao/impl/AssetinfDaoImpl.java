@@ -58,7 +58,7 @@ public class AssetinfDaoImpl extends BaseDaoImpl<Assetinf> implements AssetinfDa
 		try {
 			StringBuffer sql = new StringBuffer();
 			
-			sql.append("select a.assetId,b.assetName as assetnameId,a.assetBrand,a.assetinfoVersion,a.assetinfoPrice,a.assetinfoPic,a.assetStatus,a.agentPurchaser,a.userId,a.assetmadeTime,a.assetinfoTime,a.StartUseTime,c.factoryName as assetfactoryId,d.supplierName as supplierId,e.projectName as projectId,f.maintenanceName as maintenanceId,a.instaLocation,a.UsedYears,a.LifeYears,a.Remark ");
+			sql.append("select a.assetId,b.assetName as assetnameId,a.assetserialCode,a.assetBrand,a.assetinfoVersion,a.assetinfoPrice,a.assetinfoPic,a.assetStatus,a.agentPurchaser,a.userId,a.realName,a.assetmadeTime,a.assetinfoTime,a.StartUseTime,c.factoryName as assetfactoryId,d.supplierName as supplierId,e.projectName as projectId,f.maintenanceName as maintenanceId,a.instaLocation,a.UsedYears,a.LifeYears,a.Remark ");
 			sql.append("from t_assetinfo a left join t_assetname b on a.assetnameId = b.assetnameId left join t_factory c on a.assetfactoryId=c.factoryId left join t_supplier d on a.supplierId=d.supplierId left join t_project e on a.projectId=e.projectId left join t_maintenanceinfo f on a.maintenanceId=f.maintenanceId where 1=1 ");
 			if (StringUtils.isNotEmpty(model.getassetId())) {
 				sql.append("   and a.assetId = '"+ model.getassetId() + "' ");

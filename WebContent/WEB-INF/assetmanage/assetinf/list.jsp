@@ -33,7 +33,7 @@
 				columns: [
 				{ display: '资产编号', name: 'assetId', width: "150" },
 				{ display: '资产名称', name: 'assetnameId', width: "100" },
-				//{ display: '资产出厂编号', name: 'assetserialCode', width: "80" },
+				{ display: '资产序列号', name: 'assetserialCode', width: "150" },
 				//{ display: '所属项目编号', name: 'projectNumber', width: "80"}, 
 				{ display: '资产品牌', name: 'assetBrand', width: "100"},
 				{ display: '资产型号', name: 'assetinfoVersion', width: "100"},
@@ -41,7 +41,8 @@
 				//{ display: '图片', name: 'assetinfoPic', width: "50"},
 				{ display: '资产状态', name: 'assetStatus', width: "80"},
 				{ display: '经办人', name: 'agentPurchaser', width: "50"},
-				{ display: '使用者', name: 'userId', width: "50"},
+				//{ display: '使用者Id', name: 'userId', width: "50"},
+				{ display: '使用者', name: 'realName', width: "60"},
 				//{ display: '制造日期', name: 'assetmadeTime', width: "60"},
 				//{ display: '购买日期', name: 'assetinfoTime', width: "60"},
 				//{ display: '启用日期', name: 'startUseTime', width: "60"},

@@ -71,6 +71,7 @@ public class AssetinfServiceImpl implements AssetinfService {
 				assetinf.setassetStatus(model.getassetStatus());
 				assetinf.setagentPurchaser(model.getagentPurchaser());
 				assetinf.setuserId(model.getuserId());
+				assetinf.setrealName(model.getrealName());
 				assetinf.setassetmadeTime(model.getassetmadeTime());
 				assetinf.setassetinfoTime(model.getassetinfoTime());
 				assetinf.setStartUseTime(model.getStartUseTime());

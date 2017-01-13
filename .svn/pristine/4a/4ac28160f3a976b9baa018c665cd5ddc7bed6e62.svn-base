@@ -93,7 +93,6 @@
 			});
 			return flag;
 		}
-		
     </script>
 </head>
     <body>
@@ -128,7 +127,7 @@
                     </tr>
                     <tr>
                         <td class="label">
-                            	资产归属：
+                            	资产类别编号及名称：
                         </td>
                         <td>
                             <select name="assetType">
