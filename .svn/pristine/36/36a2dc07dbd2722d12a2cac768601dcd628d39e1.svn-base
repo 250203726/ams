@@ -1,0 +1,204 @@
+package com.ams.infomanage.unit.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ams.infomanage.unit.entity.Unit;
+import com.ams.infomanage.unit.model.UnitModel;
+import com.ams.infomanage.unit.service.UnitService;
+import com.core.action.BaseAction;
+import com.core.model.OutputMessage;
+import com.util.enums.PageSizeEnum;
+import com.util.json.JackJsonUtils;
+import com.util.page.Pager;
+import com.util.page.PagerHelper;
+
+/**
+ * 单位action
+ * @author simon
+ * @date 2017年1月17日 下午3:20:32
+ */
+@Controller
+public class UnitAction extends BaseAction {
+
+	private static final long serialVersionUID = 96172069305589029L;
+
+	@Resource
+	private UnitService unitService;
+	//@Resource
+	//private CustomerService customerService;
+
+	/**
+	 * 跳转到新建页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/infomanage/unit/add")
+	public String add() {
+		return UNIT + "edit"; 
+	}
+
+	/**
+	 * 保存
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/infomanage/unit/save", produces = "text/plain;charset=UTF-8")
+	public @ResponseBody
+	String save(Unit model) {
+		OutputMessage msg = new OutputMessage();
+		if (null != model) {
+			if (StringUtils.isNotEmpty(model.getUnitId())) {// 修改
+				Unit Unit = unitService.getById(model.getUnitId());
+				if (null != Unit) {
+					unitService.update(model);
+					msg = setOutputMessage(true, "修改成功！", model.getUnitId());
+				} 
+				else 
+				{
+					msg = setOutputMessage(false, "该单位已经被删除！",
+							model.getUnitId());
+				}
+			}
+			else
+			{// 保存
+				if (checkUnit(model.getUnitName(), null).equals("false")) {// 如果单位不存在
+					unitService.save(model);
+					msg = setOutputMessage(true, "新建成功！", model.getUnitId());
+				} else {
+					msg = setOutputMessage(false, "单位已存在！",model.getUnitId());
+				}
+			}
+		} else {
+			msg = setOutputMessage(false, "数据为空", null);
+		}
+		return JackJsonUtils.toJSon(msg);
+	}
+
+	/**
+	 * 跳转到编辑页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/infomanage/unit/edit")
+	public String edit(String id, ModelMap map) {
+		if (StringUtils.isNotEmpty(id)) {
+			Unit model = unitService.getById(id);
+			map.addAttribute("model", model);
+			return UNIT + "edit";
+		} else {
+			this.returnException("单位编号不存在，不能编辑！");
+		}
+		return ERROR;
+
+	}
+
+	/**
+	 * 跳转到详细页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/infomanage/unit/detail")
+	public String detail(String id, ModelMap map) {
+		if (StringUtils.isNotEmpty(id)) {
+			Unit model = unitService.getById(id);
+			map.addAttribute("model", model);
+			return UNIT + "detail";
+		} else {
+			this.returnException("单位编号不存在，查看不了详细！");
+		}
+		return ERROR;
+	}
+
+	/**
+	 * 物理删除单位
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/infomanage/unit/delete", produces = "text/plain;charset=UTF-8")
+	public @ResponseBody
+	String delete(String id) {
+		OutputMessage msg = new OutputMessage();
+		if (StringUtils.isNotEmpty(id)) {
+			unitService.delete(id);
+			msg = setOutputMessage(true, "操作成功！", id);
+		} else {
+			msg = setOutputMessage(false, "操作失败，单位为空！", id);
+		}
+		return JackJsonUtils.toJSon(msg);
+	}
+
+	/**
+	 * 跳转到列表页面
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/infomanage/unit/toList")
+	public String toList() {
+		return UNIT + "list";
+	}
+
+	/**
+	 * 局部刷新翻页
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/infomanage/unit/list", produces = "text/plain;charset=UTF-8")
+	public @ResponseBody
+	String list(Unit model) {
+		Pager page = PagerHelper.getInstance(this.request,
+				PageSizeEnum.MIDDLE);
+		List<Unit> list = unitService.findByCondition(model, page);
+		page.setRows(list);
+		return JackJsonUtils.toJSon(page);
+	}
+
+	/**
+	 * 打开弹出框内容
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/infomanage/unit/toPopList")
+	public String toPopList(UnitModel model, ModelMap map) {
+		map.addAttribute("model", model);
+		return UNIT + "UnitPop";
+	}
+
+	/**
+	 * 弹出框局部刷新
+	 */
+	@RequestMapping(value = "/infomanage/unit/popList", produces = "text/plain;charset=UTF-8")
+	public @ResponseBody
+	String popList(Unit model) {
+		Pager page = PagerHelper.getInstance(this.request,
+				PageSizeEnum.MIDDLE);
+		List<Unit> list = unitService.findByCondition(model, page);
+		page.setRows(list);
+		return JackJsonUtils.toJSon(page);
+	}
+
+	/**
+	 * 检查单位名是否存在
+	 * 
+	 * @param name
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/infomanage/unit/checkUnit", produces = "text/plain;charset=UTF-8")
+	public @ResponseBody
+	String checkUnit(String name, String id) {
+		boolean flag = false;
+		flag = unitService.checkUnit(name, id);
+		return String.valueOf(flag);
+	}
+
+}

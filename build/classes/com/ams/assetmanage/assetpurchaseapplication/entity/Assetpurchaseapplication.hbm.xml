@@ -30,9 +30,9 @@
                 <comment>申请时间</comment>
             </column>
         </property>
-        <property name="assetnameId" type="string">
-            <column name="assetnameId" length="32">
-                <comment>资产名称编号</comment>
+        <property name="assettypeId" type="string">
+            <column name="assettypeId" length="32">
+                <comment>资产类型编号</comment>
             </column>
         </property>
         <property name="specificationModel" type="string">

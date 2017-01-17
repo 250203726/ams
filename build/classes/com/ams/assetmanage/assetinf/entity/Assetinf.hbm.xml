@@ -9,10 +9,10 @@
 			<column name="assetId" length="32" />
 			<generator class="assigned" />
 		</id>
-		<property generated="never" lazy="false" name="assetnameId"
+		<property generated="never" lazy="false" name="assettypeId"
 			type="string">
-			<column length="32" name="assetnameId">
-				<comment>资产名称编号</comment>
+			<column length="32" name="assettypeId">
+				<comment>资产类型编号</comment>
 			</column>
 		</property>
 		<property generated="never" lazy="false" name="assetserialCode"

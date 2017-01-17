@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-12 18:02:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+ <class name="com.ams.infomanage.unit.entity.Unit" table="t_unit">
+  <id name="unitId" type="string">
+   <column length="32" name="unitId">
+   <comment>单位编号</comment>
+            </column>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="unitName" type="string">
+   <column length="100" name="unitName" not-null="true">
+    <comment>单位名称</comment>
+   </column>
+  </property>
+ </class>
+</hibernate-mapping>

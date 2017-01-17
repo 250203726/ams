@@ -67,9 +67,9 @@
 				<value>classpath*:com/ams/system/entity</value>
 				<value>classpath*:com/ams/infomanage/depart/entity</value>
 				<value>classpath*:com/ams/infomanage/project/entity</value>
-				<value>classpath*:com/ams/assetmanage/assetcla/entity</value>
+				<value>classpath*:com/ams/infomanage/unit/entity</value>
 				<value>classpath*:com/ams/assetmanage/assetinf/entity</value>
-				<value>classpath*:com/ams/assetmanage/assetnam/entity</value>
+				<value>classpath*:com/ams/assetmanage/assettype/entity</value>
 				<value>classpath*:com/ams/infomanage/factory/entity</value>
 				<value>classpath*:com/ams/infomanage/supplier/entity</value>
 				<value>classpath*:com/ams/infomanage/maintenanceinfo/entity</value>

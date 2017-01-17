@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-12 18:02:30 by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+	<class name="com.ams.assetmanage.assetinf.entity.Assetinf" 
+		table="t_assetinfo">
+		<id name="assetId" type="string">
+			<column name="assetId" length="32" />
+			<generator class="assigned" />
+		</id>
+		<property generated="never" lazy="false" name="assetnameId"
+			type="string">
+			<column length="32" name="assetnameId">
+				<comment>资产名称编号</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="assetserialCode"
+			type="string">
+			<column length="11" name="assetserialCode">
+				<comment>资产序列号</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="projectNumber"
+			type="integer">
+			<column length="11" name="projectNumber">
+				<comment>所属项目编号</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="assetBrand"
+			type="string">
+			<column length="100" name="assetBrand">
+				<comment>资产品牌</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="assetinfoVersion"
+			type="string">
+			<column length="100" name="assetinfoVersion">
+				<comment>资产型号</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="assetinfoPrice"
+			type="float">
+			<column name="assetinfoPrice">
+				<comment>资产价格</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="assetinfoPic"
+			type="string">
+			<column name="assetinfoPic" length="200">
+				<comment>附件</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="assetStatus"
+			type="string">
+			<column length="50" name="assetStatus">
+				<comment>资产状态</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="agentPurchaser"
+			type="string">
+			<column length="50" name="agentPurchaser">
+				<comment>采购人</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="userId" type="string">
+			<column length="32" name="userId">
+				<comment>使用者Id</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="realName" type="string">
+			<column length="50" name="realName">
+				<comment>使用者</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="assetmadeTime"
+			type="timestamp">
+			<column name="assetmadeTime">
+				<comment>制造日期</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="assetinfoTime"
+			type="timestamp">
+			<column name="assetinfoTime">
+				<comment>购买日期</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="startUseTime"
+			type="timestamp">
+			<column name="StartUseTime">
+				<comment>启用日期</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="assetfactoryId"
+			type="string">
+			<column length="32" name="assetfactoryId">
+				<comment>厂商编号</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="supplierId"
+			type="string">
+			<column length="32" name="supplierId">
+				<comment>供应商编号</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="projectId"
+			type="string">
+			<column length="32" name="projectId">
+				<comment>项目编号</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="maintenanceId"
+			type="string">
+			<column length="32" name="maintenanceId">
+				<comment>维护公司编号</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="instaLocation"
+			type="string">
+			<column length="100" name="instaLocation">
+				<comment>安装地点</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="usedYears"
+			type="timestamp">
+			<column name="UsedYears">
+				<comment>使用年限</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="lifeYears"
+			type="timestamp">
+			<column name="LifeYears">
+				<comment>生命年限</comment>
+			</column>
+		</property>
+		<property generated="never" lazy="false" name="remark" type="string">
+			<column length="100" name="Remark">
+				<comment>备注</comment>
+			</column>
+		</property>
+	</class>
+</hibernate-mapping>
